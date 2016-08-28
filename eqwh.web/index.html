@@ -1,0 +1,445 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <script src="Scripts/jquery-1.12.4.min.js"></script>
+    <script src="Scripts/jquery-ui-1.12.0.min.js"></script>
+    <!--<link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/bootstrap-theme.css" rel="stylesheet" />-->
+    <link href="Content/css/bootstrap-rtl.css" rel="stylesheet" />
+
+    <link rel="StyleSheet" href="Content/tree.css" type="text/css">
+    <script type="text/javascript" src="Scripts/tree.js"></script>
+
+
+    <style>
+        /*.nav > li > a {
+            padding: 10px 5px;
+        }
+
+        .nav-tabs > li > a {
+            color: black;
+        }
+
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+            font-weight: bold;
+        }*/
+
+        .panel-body {
+            padding-bottom: 0px;
+        }
+
+        .tree {
+            padding: 0px;
+            background-color: lightyellow;
+            min-height: 500px;
+            overflow: scroll;
+        }
+
+        .tree {
+            font-size: 16px;
+        }
+        /*--------------------------*/
+        ul.tab {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Float the list items side by side */
+            ul.tab li {
+                float: right;
+            }
+
+                /* Style the links inside the list items */
+                ul.tab li a {
+                    display: inline-block;
+                    color: black;
+                    text-align: center;
+                    padding: 10px 16px;
+                    text-decoration: none;
+                    transition: 0.3s;
+                    font-size: 17px;
+                }
+
+                    /* Change background color of links on hover */
+                    ul.tab li a:hover {
+                        background-color: #ddd;
+                    }
+
+                    /* Create an active/current tablink class */
+                    ul.tab li a:focus, .active {
+                        background-color: #ccc;
+                    }
+        /*--------------------*/
+
+
+        ul.subtab {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Float the list items side by side */
+            ul.subtab li {
+                float: right;
+            }
+
+                /* Style the links inside the list items */
+                ul.subtab li a {
+                    display: inline-block;
+                    color: black;
+                    text-align: center;
+                    padding: 8px 14px;
+                    text-decoration: none;
+                    transition: 0.3s;
+                    font-size: 15px;
+                }
+
+                    /* Change background color of links on hover */
+                    ul.subtab li a:hover {
+                        background-color: #ddd;
+                    }
+
+                    /* Create an active/current tablink class */
+                    ul.subtab li a:focus, .active {
+                        background-color: #ccc;
+                    }
+
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            -webkit-animation: fadeEffect 1s;
+            animation: fadeEffect 1s;
+        }
+        /* Style the tab content */
+        .qurantranslations {
+            display: none;
+            padding: 6px 12px;
+            -webkit-animation: fadeEffect 1s;
+            animation: fadeEffect 1s;
+        }
+
+        @-webkit-keyframes fadeEffect {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeEffect {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .tarjuma-head {
+            font-size: 16px;
+        }
+
+        .tarjuma-body {
+            font-size: 28px;
+        }
+
+        .container {
+            margin-right: 0px;
+            margin-left: 0px;
+            padding-left: 0px;
+            padding-right: 16px;
+        }
+    </style>
+
+    <script>
+        function GetAyah(ayahno) {
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("get", "ayah/getayat/" + ayahno, true);
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+
+            xhr.onload = function () {
+                if (xhr.response && xhr.responseText != null) {
+                    var json = JSON.parse(xhr.response);
+                    currentayah = ayahno;
+
+                    $('#ayat-arabic').text(json.Ayat);
+                    $('#TarjumaMafhoomUlQuran-body').text(json.TarjumaMafhoomUlQuran);
+                    $('#TarjumaRohulQuran-body').text(json.TarjumaRohulQuran);
+                    $('#TarjumaMadni-body').text(json.TarjumaMadni);
+
+                }
+            };
+
+            xhr.send(null);
+        }
+        var currentayah = 0;
+        $(document).ready(function () {
+            GetAyah(1);
+        });
+        $(function () {
+            $("#slider").slider();
+        });
+    </script>
+</head>
+<body>
+
+    <!--data-spy="scroll" data-target=".navbar" data-offset="50"-->
+    <div class="container">
+        <div class="row" style="font-size: 28px;font-weight: bold;color: green;">
+            القرآن سهل و الحديث
+        </div>
+        <div class="row">
+            <ul class="tab">
+                <li><a href="#" class="tablinks active" onclick="opentab(event, 'qurantab')">القرآن المجيد</a></li>
+                <li><a href="#" class="tablinks" onclick="opentab(event, 'hadithtab')">أحاديث مباركة</a></li>
+                <li><a href="#" class="tablinks" onclick="opentab(event, 'qirattab')">قرات</a></li>
+                <li><a href="#" class="tablinks" onclick="opentab(event, 'introtab')">تعارف</a></li>
+            </ul>
+        </div>
+        <div class="row">
+            <div id="qurantab" class="tabcontent" style="display:block">
+                <div class="col-lg-3">
+                    <div class="row">
+                        <ul class="subtab">
+                            <li><a href="#">پارہ و سورہ</a></li>
+                            <li><a href="#">موضوعات</a></li>
+                            <li><a href="#">  تلاش</a></li>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="btn-toolbar">
+                            <button class="btn">
+                                <span class="glyphicon glyphicon-step-forward">
+
+                                </span>
+                            </button>
+                            <button class="btn" onclick="GetAyah(currentayah+1);">
+                                <span class="glyphicon glyphicon-forward">
+
+                                </span>
+                            </button>
+                            <input type="text" style="width: 90px;" value="1587" />
+                            <button class="btn" onclick="GetAyah(currentayah-1);">
+                                <span class="glyphicon glyphicon-backward">
+
+                                </span>
+                            </button>
+                            <button class="btn">
+                                <span class="glyphicon glyphicon-step-backward">
+
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <script type="text/javascript">
+                            var Tree = new Array;
+                            // nodeId | parentNodeId | nodeName | nodeUrl
+                            //Tree[0] = "1|0|1. الم|#";
+                            //Tree[1] = "2|1|1. الفاتحة|#";
+                            //Tree[2] = "3|1|2. البقرة|#";
+                            //Tree[3] = "4|0|2. سَيَقُولُ|#";
+                            //Tree[4] = "5|0|2. سَيَقُولُ|#";
+                            //Tree[5] = "6|0|2. سَيَقُولُ|#";
+                            Tree[0] = "1|0|القرآن المجيد|#";
+                            Tree[1] = "2|1|1. الم|#";
+                            Tree[2] = "3|2|1. الفاتحة|#";
+                            Tree[3] = "4|2|2. البقرة|#";
+                            Tree[4] = "5|1|2. سَيَقُولُ|#";
+                        </script>
+
+                        <div class="tree">
+                            <script>
+                                createTree(Tree, 1, 7);
+                            </script>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="cotainer">
+                            <div class="row">
+                                <ul class="subtab">
+                                    <li><a href="#">Navigation</a></li>
+                                    <li><a href="#">Audio</a></li>
+                                    <li><a href="#">Settings</a></li>
+                                </ul>
+                            </div>
+                            <div class="row" style="margin-left:0px">
+                                <div class="col-lg-2">سورہ</div>
+                                <div class="col-lg-8"><select style="min-width:200px"><option>الفاتحة</option></select></div>
+                                <div class="col-lg-2 text-right table-bordered">14</div>
+                            </div>
+                            <div class="row" style="margin-left:0px">
+                                <div class="col-lg-2">رکوع</div>
+
+                                <div class="col-lg-8"><select style="min-width:200px"><option>الفاتحة</option></select></div>
+                                <div class="col-lg-2 text-right table-bordered">6</div>
+                            </div>
+                            <div class="row" style="margin-left:0px">
+                                <div class="col-lg-2">آیت</div>
+                                <div class="col-lg-8"><input style="max-width:200px" type="text" name="name" value="0" /></div>
+                                <div class="col-lg-2 text-right table-bordered">54</div>
+                            </div>
+                            <div class="row" style="margin-left:0px">
+                                <div class="col-lg-2">پارہ</div>
+                                <div class="col-lg-8"><select style="min-width:200px"><option>الفاتحة</option></select></div>
+                                <div class="col-lg-2 text-right table-bordered">30</div>
+                            </div>
+                            <div class="row" style="margin-left:0px">
+                                <div class="col-lg-2">رکوع</div>
+                                <div class="col-lg-8"><select style="min-width:200px"><option>الفاتحة</option></select></div>
+                                <div class="col-lg-2 text-right table-bordered">19</div>
+                            </div>
+                            <div class="row" style="margin-left:0px">
+                                <div class="col-lg-2">آیت</div>
+                                <div class="col-lg-8"><input style="max-width:200px" type="text" name="name" value="0" /></div>
+                                <div class="col-lg-2 text-right table-bordered">166</div>
+                            </div>
+                            <div class="row" style="margin-left:0px">
+                                <div class="col-lg-2"><input type="button" name="name" class="btn" value="+"></div>
+                                <div class="col-lg-8"><div id="slider" style="margin-top:10px"></div></div>
+                                <div class="col-lg-2"><input type="button" name="name" class="btn" value="-"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row">
+                        <ul class="subtab">
+                            <li><a href="#" class="qtablinks" onclick="openqtab(event, 'tamamtarajamtab')">تمام تراجم</a></li>
+                            <li><a href="#" class="qtablinks" onclick="openqtab(event, 'lafzigrammertab')">لفظی و گرائمر</a></li>
+                            <li><a href="#" class="qtablinks" onclick="openqtab(event, 'tafseermojoodatab')">تفاسیر موجودہ</a></li>
+
+                            <li><a href="#" class="qtablinks" onclick="openqtab(event, 'tafseerwusta1tab')">تفاسیر وسطیٰ 1</a></li>
+                            <li><a href="#" class="qtablinks" onclick="openqtab(event, 'tafseerwusta2tab')">تفاسیر وسطیٰ 2</a></li>
+                            <li><a href="#" class="qtablinks" onclick="openqtab(event, 'tafseerwusta3tab')">تفاسیر وسطیٰ 3</a></li>
+
+                            <li><a href="#" class="qtablinks" onclick="openqtab(event, 'tafseerolatab')">تفاسیر اولیٰ</a></li>
+                            <li><a href="#" class="qtablinks" onclick="openqtab(event, 'tafseerdegartab')">تفاسیر دیگر</a></li>
+                            <li><a href="#" class="qtablinks" onclick="openqtab(event, 'misbahtab')">مصباح القرآن</a></li>
+                        </ul>
+
+                    </div>
+                    <div class="row" style="max-height: 799px;overflow: scroll;">
+                        <div class="container">
+                            <div id="tamamtarajamtab" class="qurantranslations" style="display:block">
+                                <div class="row tarjuma-head">
+                                    آیت بمع اعراب
+                                </div>
+                                <div class="row tarjuma-body" id="ayat-arabic" style="min-height:150px; background-color:rgb(226,238,210)">
+
+                                </div>
+                                <div class="row tarjuma-head" id="TarjumaMafhoomUlQuran-head">
+                                    (ترجمہ مفہوم القرآن رفعت اعجاز صاحبہ (1433ھ—2012ء
+                                </div>
+                                <div class="row tarjuma-body" id="TarjumaMafhoomUlQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                </div>
+                                <div class="row tarjuma-head" id="TarjumaRohulQuran-head">
+                                    (ترجمہ روح القران   ۔ ڈاکٹر محمد اسلم صدیقی صاحب ۔ (1433ھ—2012ء
+                                </div>
+                                <div class="row tarjuma-body" id="TarjumaRohulQuran-body" style="min-height:150px; background-color:rgb(226,238,210)">
+
+                                </div>
+                                <div class="row tarjuma-head" id="TarjumaMadni-head">
+                                    (ترجمہ مدنی   مولانا اسحاق مدنی صاحب  (آزاد کشمیر) (1432ھ—2012ء
+                                </div>
+                                <div class="row tarjuma-body" id="TarjumaMadni-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                </div>
+                                <div class="row tarjuma-head" id="TarjumaAnwarulbayan-head">
+                                    mc (ترجمہ انوارالبیان مولانا عاشق الہٰی صاحب (1430ھ—2009ء
+                                </div>
+                                <div id="TarjumaAnwarulbayan-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                </div>
+                                <div class="row tarjuma-head" id="TarjumaAsanQuran-head">
+                                    mc (ترجمہ آسان قرآن مفتی تقی عثمانی صاحب (1429ھ—2009ء
+                                </div>
+                                <div id="TarjumaAsanQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                </div>
+                                <div class="row tarjuma-head" id="TarjumaBayanUlQuranDrIsrar-head">
+                                    mc (ترجمہ بیان القرآن ڈاکٹر اسرار احمد صاحب (1428ھ—2008ء
+                                </div>
+                                <div id="TarjumaBayanUlQuranDrIsrar-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                </div>
+                                <div class="row tarjuma-head" id="TarjumaBayanUlQuranDrIsrar-head">
+                                    mc (ترجمہ بیان القرآن ڈاکٹر اسرار احمد صاحب (1428ھ—2008ء
+                                </div>
+                                <div id="TarjumaBayanUlQuranDrIsrar-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                </div>
+                                <div class="row tarjuma-head" id="TafseerUlQuranKarim-head">
+                                    ma (تفسیر القرآن الکریم  حافظ عبدالسلام بھٹوی (1427ھ—2007ء
+                                </div>
+                                <div id="TafseerUlQuranKarim-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                </div>
+                                <div class="row tarjuma-head" id="TarjumaFawaidUlQuran-head">
+                                    mc (ترجمہ فوائد القران ۔ مرتب عبدالقیوم مہاجر مدنی صاحب  (1425ھ - 2005ء
+                                </div>
+                                <div id="TarjumaFawaidUlQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                </div>
+
+                                <div class="row tarjuma-head" id="TarjumaFahmulQuran-head">
+                                    mc  (ترجمہ فہم القرآن میاں محمد جمیل  میاں محمد جمیل صاحب (1425ھ - 2005ء
+                                </div>
+                                <div id="TarjumaFahmulQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="hadithtab" class="tabcontent">
+                <h1>Ahadith section comming soon Insha Allah</h1>
+            </div>
+            <div id="qirattab" class="tabcontent">
+                <h1>qirat section comming soon Insha Allah</h1>
+            </div>
+            <div id="introtab" class="tabcontent">
+                <h1>intro section comming soon Insha Allah</h1>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function opentab(evt, tabid) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabid).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
+
+</body>
+</html>
