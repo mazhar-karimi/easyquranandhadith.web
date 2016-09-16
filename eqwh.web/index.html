@@ -9,8 +9,8 @@
     <link href="Content/bootstrap-theme.css" rel="stylesheet" />-->
     <link href="Content/css/bootstrap-rtl.css" rel="stylesheet" />
 
-    <link rel="StyleSheet" href="tree.css" type="text/css">
-    <script type="text/javascript" src="tree.js"></script>
+    <link rel="StyleSheet" href="Content/tree.css" type="text/css">
+    <script type="text/javascript" src="Scripts/tree.js"></script>
 
 
     <style>
@@ -34,6 +34,7 @@
             padding: 0px;
             background-color: lightyellow;
             min-height: 500px;
+            max-height: 500px;
             overflow: scroll;
         }
 
@@ -63,7 +64,8 @@
                     padding: 10px 16px;
                     text-decoration: none;
                     transition: 0.3s;
-                    font-size: 17px;
+                    font-size: 19px;
+                    font-family: alvi nastaleeq;
                 }
 
                     /* Change background color of links on hover */
@@ -100,7 +102,8 @@
                     padding: 8px 14px;
                     text-decoration: none;
                     transition: 0.3s;
-                    font-size: 15px;
+                    font-size: 17px;
+                    font-family: alvi nastaleeq;
                 }
 
                     /* Change background color of links on hover */
@@ -127,6 +130,8 @@
             padding: 6px 12px;
             -webkit-animation: fadeEffect 1s;
             animation: fadeEffect 1s;
+            max-height: 600px;
+            overflow: scroll;
         }
 
         @-webkit-keyframes fadeEffect {
@@ -151,14 +156,19 @@
 
         .tarjuma-head {
             font-size: 16px;
+            font-family: alvi nastaleeq;
         }
 
         .tarjuma-body {
-            font-size: 18px;
+            font-size: 20px;
+            font-family: alvi nastaleeq;
+            max-height: 150px;
+            overflow: scroll;
         }
 
-                .ayat-body {
+        .ayat-body {
             font-size: 28px;
+            /*font-family : KFGQPC Uthmanic Script HAFS;*/
         }
 
         .container {
@@ -169,7 +179,11 @@
         }
     </style>
 
+    <script src="Scripts/ParahSurahRukh.js">
+
+    </script>
     <script>
+
         function GetAyah(ayahno) {
             var xhr = new XMLHttpRequest();
 
@@ -179,13 +193,16 @@
             xhr.onload = function () {
                 if (xhr.response && xhr.responseText != null) {
                     var json = JSON.parse(xhr.response);
-                    currentayah = ayahno;
-
+                    currentayah = parseInt(ayahno);
+                    setnavig(ayahno);
+                   
+                    $("#ddlayahs").val(json.AyatNo);
+                    
+                    $('#tbAyahNo').val(ayahno);
                     $('#ayat-arabic').text(json.Ayat);
                     $('#TarjumaMafhoomUlQuran-body').text(json.TarjumaMafhoomUlQuran);
                     $('#TarjumaRohulQuran-body').text(json.TarjumaRohulQuran);
                     $('#TarjumaMadni-body').text(json.TarjumaMadni);
-
                     $('#TarjumaAnwarulbayan-body').text(json.TarjumaAnwarulbayan);
                     $('#TarjumaAsanQuran-body').text(json.TarjumaAsanQuran);
                     $('#TarjumaBayanUlQuranDrIsrar-body').text(json.TarjumaBayanUlQuranDrIsrar);
@@ -194,7 +211,6 @@
                     $('#TarjumaFahmulQuran-body').text(json.TarjumaFahmulQuran);
                     $('#TarjumaAlkitab-body').text(json.TarjumaAlkitab);
                     $('#TarjumaTaiseerurRehman-body').text(json.TarjumaTaiseerurRehman);
-
                     $('#TarjumaImdadulKaram-body').text(json.TarjumaImdadulKaram);
                     $('#TarjumaZakhiratulJinan-body').text(json.TarjumaZakhiratulJinan);
                     $('#TarjumaDawateQuran-body').text(json.TarjumaDawateQuran);
@@ -205,7 +221,6 @@
                     $('#TarjumaIrfanulQuranUrdu-body').text(json.TarjumaIrfanulQuranUrdu);
                     $('#TarjumaAhsanUlBayan-body').text(json.TarjumaAhsanUlBayan);
                     $('#TarjumaNazarAhmad-body').text(json.TarjumaNazarAhmad);
-
                     $('#TarjumaAsrarulTanzeel-body').text(json.TarjumaAsrarulTanzeel);
                     $('#TarjumaMalimulIrfaan-body').text(json.TarjumaMalimulIrfaan);
                     $('#TarjumaAsanTahreek-body').text(json.TarjumaAsanTahreek);
@@ -213,7 +228,6 @@
                     $('#TarjumaTadubbureQuran-body').text(json.TarjumaTadubbureQuran);
                     $('#TarjumaBaseerateQuran-body').text(json.TarjumaBaseerateQuran);
                     $('#TarjumaMajdi-body').text(json.TarjumaMajdi);
-
                     $('#TarjumaJawahirulQuran-body').text(json.TarjumaJawahirulQuran);
                     $('#TarjumaSirajUlBayan-body').text(json.TarjumaSirajUlBayan);
                     $('#TarjumaMarifUlQuran-body').text(json.TarjumaMarifUlQuran);
@@ -224,7 +238,6 @@
                     $('#TarjumaAhmadAliLahore-body').text(json.TarjumaAhmadAliLahore);
                     $('#TarjumaAshrafi-body').text(json.TarjumaAshrafi);
                     $('#TarjumaNoorulIrfan-body').text(json.TarjumaNoorulIrfan);
-
                     $('#TarjumaMazharulQuran-body').text(json.TarjumaMazharulQuran);
                     $('#TarjumaMudoodi-body').text(json.TarjumaMudoodi);
                     $('#TarjumaKanzulIman-body').text(json.TarjumaKanzulIman);
@@ -248,27 +261,263 @@
                     $('#TarjumaLafziDrFarhatHashmi-body').text(json.TarjumaLafziDrFarhatHashmi);
                     $('#Anwarulbayan-body').text(json.Anwarulbayan);
                     $('#MutalaQuran-body').text(json.MutalaQuran);
-                    $('#ColorTarjuma-body').text(json.ColorTarjuma);
+                    $('#ColorTarjuma-body').html(json.ColorTarjuma);
 
-                    $('#Keywords-body').text(json.Keywords);
+                    $('#Keywords-body').html(json.Keywords);
                     $('#ColorAyat-body').html(json.ColorAyat);
 
                     $('#ShaneNazool-body').text(json.ShaneNazool);
-                    $('#AsbabeNazool-body').html(json.AsbabeNazool);
+                    $('#AsbabeNazool-body').text(json.AsbabeNazool);
+
+                    $('#TafseerMarifulFurqan-body').text(json.TafseerMarifulFurqan);
+                    $('#TarjumaRohulQuran-body').text(json.TarjumaRohulQuran);
+                    $('#TafseerRohulQuran-body').text(json.TafseerRohulQuran);
+                    $('#TarjumaMadni-body').text(json.TarjumaMadni);
+                    $('#TafseerMadni-body').text(json.TafseerMadni);
+                    $('#TafseerMadniKabeer-body').text(json.TafseerMadniKabeer);
+                    $('#TarjumaMafhoomUlQuran-body').text(json.TarjumaMafhoomUlQuran);
+                    $('#TafseerMafhoomUlQuran-body').text(json.TafseerMafhoomUlQuran);
+                    $('#KhulasaMazameenQuran-body').text(json.KhulasaMazameenQuran);
+                    $('#TarjumaBotvi-body').text(json.TarjumaBotvi);
+                    $('#TafseerUlQuranKarim-body').text(json.TafseerUlQuranKarim);
+                    $('#TafseerDawatulQuran-body').text(json.TafseerDawatulQuran);
+                    $('#TarjumaAnwarulbayan-body').text(json.TarjumaAnwarulbayan);
+                    $('#TafseerAnwarUlBayan-body').text(json.TafseerAnwarUlBayan);
+                    $('#TarjumaAsanQuran-body').text(json.TarjumaAsanQuran);
+                    $('#TafseerAsanQuran-body').text(json.TafseerAsanQuran);
+                    $('#TarjumaBayanUlQuranDrIsrar-body').text(json.TarjumaBayanUlQuranDrIsrar);
+                    $('#TafseerBayanUlQuranDrIsrar-body').text(json.TafseerBayanUlQuranDrIsrar);
+                    $('#TarjumaAlkitab-body').text(json.TarjumaAlkitab);
+                    $('#TafseerAlkitab-body').text(json.TafseerAlkitab);
+                    $('#TarjumaFawaidUlQuran-body').text(json.TarjumaFawaidUlQuran);
+                    $('#TafseerFawaidUlQuran-body').text(json.TafseerFawaidUlQuran);
+                    $('#TarjumaFahmulQuran-body').text(json.TarjumaFahmulQuran);
+                    $('#TafseerFahmulQuran-body').text(json.TafseerFahmulQuran);
+                    $('#MukhtasarTafseerAteeq-body').text(json.MukhtasarTafseerAteeq);
+                    $('#TarjumaTaiseerurRehman-body').text(json.TarjumaTaiseerurRehman);
+                    $('#TafseerTaiseerurRehman-body').text(json.TafseerTaiseerurRehman);
+                    $('#TarjumaImdadulKaram-body').text(json.TarjumaImdadulKaram);
+                    $('#TafseerImdadulKaram-body').text(json.TafseerImdadulKaram);
+
+                    $('#TarjumaZakhiratulJinan-body').text(json.TarjumaZakhiratulJinan);
+                    $('#TafseerZakhiratulJinan-body').text(json.TafseerZakhiratulJinan);
+                    $('#TarjumaTayseerulquran-body').text(json.TarjumaTayseerulquran);
+                    $('#TafseerTayseerulquran-body').text(json.TafseerTayseerulquran);
+                    $('#TarjumaDawateQuran-body').text(json.TarjumaDawateQuran);
+                    $('#TafseerDawateQuran-body').text(json.TafseerDawateQuran);
+                    $('#TarjumaTibyanulQuran-body').text(json.TarjumaTibyanulQuran);
+                    $('#TafseerTibyanulQuran-body').text(json.TafseerTibyanulQuran);
+                    $('#TarjumaUrwatUlWasqa-body').text(json.TarjumaUrwatUlWasqa);
+                    $('#TafseerUrwatUlWasqa-body').text(json.TafseerUrwatUlWasqa);
+                    $('#TarjumaBayanUlQuran-body').text(json.TarjumaBayanUlQuran);
+                    $('#TarjumaMakkah-body').text(json.TarjumaMakkah);
+                    $('#TafseerMakkah-body').text(json.TafseerMakkah);
+                    $('#TafseerAlManar-body').text(json.TafseerAlManar);
+                    $('#TafseerAnwarUlQuran-body').text(json.TafseerAnwarUlQuran);
+                    $('#TarjumaAlBayan_Ghamdi-body').text(json.TarjumaAlBayan_Ghamdi);
+                    $('#TafseerAlBayan_Ghamdi-body').text(json.TafseerAlBayan_Ghamdi);
+                    $('#TarjumaAlManar-body').text(json.TarjumaAlManar);
+                    $('#TarjumaAhsanUlBayan-body').text(json.TarjumaAhsanUlBayan);
+                    $('#TafseerAhsanUlBayan-body').text(json.TafseerAhsanUlBayan);
+                    $('#TarjumaAsrarulTanzeel-body').text(json.TarjumaAsrarulTanzeel);
+                    $('#TafseerAsrarulTanzeel-body').text(json.TafseerAsrarulTanzeel);
+                    $('#TafseerNikatulQuran-body').text(json.TafseerNikatulQuran);
 
 
+
+                    $('#TarjumaMalimulIrfaan-body').text(json.TarjumaMalimulIrfaan);
+                    $('#TafseerMalimulIrfaan-body').text(json.TafseerMalimulIrfaan);
+                    $('#TarjumaWahiduddinKhan-body').text(json.TarjumaWahiduddinKhan);
+                    $('#TafseerTazkirulQuran-body').text(json.TafseerTazkirulQuran);
+                    $('#TarjumaTadubbureQuran-body').text(json.TarjumaTadubbureQuran);
+                    $('#TafseerTadubbureQuran-body').text(json.TafseerTadubbureQuran);
+                    $('#TarjumaBaseerateQuran-body').text(json.TarjumaBaseerateQuran);
+                    $('#TafseerBaseerateQuran-body').text(json.TafseerBaseerateQuran);
+                    $('#TarjumaMajdi-body').text(json.TarjumaMajdi);
+                    $('#TafseerMajdi-body').text(json.TafseerMajdi);
+                    $('#TarjumaJawahirulQuran-body').text(json.TarjumaJawahirulQuran);
+                    $('#TafseerJawahirulQuran-body').text(json.TafseerJawahirulQuran);
+
+                    $('#TarjumaSirajUlBayan-body').text(json.TarjumaSirajUlBayan);
+                    $('#TafseerSirajUlBayan-body').text(json.TafseerSirajUlBayan);
+                    $('#TarjumaAhmadAliLahore-body').text(json.TarjumaAhmadAliLahore);
+                    $('#TafseerMehmood-body').text(json.TafseerMehmood);
+                    $('#TafseerMarifUlQuran-body').text(json.TafseerMarifUlQuran);
+                    $('#TarjumaHaqqani-body').text(json.TarjumaHaqqani);
+                    $('#TafseerHaqqani-body').text(json.TafseerHaqqani);
+                    $('#TafseerFuyoozUlQuran-body').text(json.TafseerFuyoozUlQuran);
+                    $('#TafseerFizilalulQuran-body').text(json.TafseerFizilalulQuran);
+                    $('#TarjumaShahAbdulQadir-body').text(json.TarjumaShahAbdulQadir);
+                    $('#TafseerMarifUlQuran_Idrees-body').text(json.TafseerMarifUlQuran_Idrees);
+
+
+
+                    $('#TarjumaKashafuRehman-body').text(json.TarjumaKashafuRehman);
+                    $('#TafseerKashafuRehman-body').text(json.TafseerKashafuRehman);
+                    $('#TarjumaAlHasnat-body').text(json.TarjumaAlHasnat);
+                    $('#TafseerAlHasnat-body').text(json.TafseerAlHasnat);
+                    $('#TarjumaAshrafi-body').text(json.TarjumaAshrafi);
+                    $('#TafseerAshrafi-body').text(json.TafseerAshrafi);
+                    $('#TarjumaNoorulIrfan-body').text(json.TarjumaNoorulIrfan);
+                    $('#TafseerNoorulIrfan-body').text(json.TafseerNoorulIrfan);
+                    $('#TarjumaMazharulQuran-body').text(json.TarjumaMazharulQuran);
+                    $('#TafseerMazharulQuran-body').text(json.TafseerMazharulQuran);
+                    $('#TarjumaMudoodi-body').text(json.TarjumaMudoodi);
+                    $('#TafseerMudoodi-body').text(json.TafseerMudoodi);
+                    $('#TafseerAlSaadi-body').text(json.TafseerAlSaadi);
+                    $('#TarjumaKanzulIman-body').text(json.TarjumaKanzulIman);
+                    $('#TafseerKhazainUlIrfan-body').text(json.TafseerKhazainUlIrfan);
+                    $('#TarjumaTasheelulQuran-body').text(json.TarjumaTasheelulQuran);
+                    $('#TafseerTasheelulQuran-body').text(json.TafseerTasheelulQuran);
+                    $('#TarjumaUsmani-body').text(json.TarjumaUsmani);
+                    $('#TafseerUsmani-body').text(json.TafseerUsmani);
+                    $('#TarjumaBayanUlQuran-body').text(json.TarjumaBayanUlQuran);
+                    $('#TafseerBayanUlQuran-body').text(json.TafseerBayanUlQuran);
+                    $('#TarjumaTarjumanUlQuran-body').text(json.TarjumaTarjumanUlQuran);
+                    $('#TafseerTarjumanUlQuran-body').text(json.TafseerTarjumanUlQuran);
+                    $('#TafseerAhsanUlTafaseer-body').text(json.TafseerAhsanUlTafaseer);
+                    $('#TafseerSanai-body').text(json.TafseerSanai);
+                    $('#TarjumaMozihulQuran-body').text(json.TarjumaMozihulQuran);
+                    $('#TafseerMozihulQuran-body').text(json.TafseerMozihulQuran);
+                    $('#TafseerMazhari-body').text(json.TafseerMazhari);
+                    $('#TafseerAshrafulHawashi-body').text(json.TafseerAshrafulHawashi);
+                    $('#TafseeratAhmadia-body').text(json.TafseeratAhmadia);
+                    $('#TarjumaDureeMansoor-body').text(json.TarjumaDureeMansoor);
+                    $('#TafseerDureeMansoor-body').text(json.TafseerDureeMansoor);
+                    $('#TafseerIbnAbbas-body').text(json.TafseerIbnAbbas);
+                    $('#TarjumaFatehMuhammad-body').text(json.TarjumaFatehMuhammad);
+                    $('#TafseerIbnKaseer-body').text(json.TafseerIbnKaseer);
+                    $('#TarjumaAnwarulbayan-body').text(json.TarjumaAnwarulbayan);
+                    $('#TafseerMadarikalTanzeel-body').text(json.TafseerMadarikalTanzeel);
+                    $('#TafseerQurtabi-body').text(json.TafseerQurtabi);
+                    $('#TafseerBaghvi-body').text(json.TafseerBaghvi);
+                    $('#TafseerMufradatulQuran-body').text(json.TafseerMufradatulQuran);
+                    $('#TafseerAhkamulQuran-body').text(json.TafseerAhkamulQuran);
+                    $('#TafseerIbneMasood-body').text(json.TafseerIbneMasood);
+
+                    $('#TafseerAlkousar_AT-body').text(json.TafseerAlkousar_AT);
+                    $('#TafseerBalaghulQuran_AT-body').text(json.TafseerBalaghulQuran_AT);
+                    $('#TafseerTafseerUlQuran_AT-body').text(json.TafseerTafseerUlQuran_AT);
+                    $('#TafseerRahnuma_AT-body').text(json.TafseerRahnuma_AT);
+                    $('#TafseerShawahidelQurani_AT-body').text(json.TafseerShawahidelQurani_AT);
+                    $('#TafseerUmdatulBayan_AT-body').text(json.TafseerUmdatulBayan_AT);
+                    $('#TafseerFurat_AT-body').text(json.TafseerFurat_AT);
+                    $('#TafseerFaslulkhitab_AT-body').text(json.TafseerFaslulkhitab_AT);
+                    $('#TafseerFaizanulRehman_AT-body').text(json.TafseerFaizanulRehman_AT);
+                    $('#TafseerNamoona_AT-body').text(json.TafseerNamoona_AT);
+                    //$('#-body').text(json.);
                 }
             };
 
             xhr.send(null);
         }
+
+
+        function getpsr(an) {
+            var obj = null;
+            for (var i = 0; i < psr.length; i++) {
+                var item = psr[i];
+
+                if (an >= item.mn && an <= item.mx) {
+                    obj = item;
+                    break;
+                }
+            }
+            return obj;
+        }
+
+        function getrukus(sn) {
+            var rno = 0;
+
+            for (var i = 0; i < psr.length; i++) {
+                var item = psr[i];
+
+                if (item.SurahNo == sn) {
+                    if (item.mn == item.mx)
+                        continue;
+                    rno = rno + 1;
+                }
+                else if (rno > 0) {
+                    //rno = item.RukhSurahNo;
+                    break;
+                }
+
+            }
+            return rno;
+        }
+
+        function gettotalayahs(sn) {
+            var ano = 0;
+
+            for (var i = 0; i < psr.length; i++) {
+                var item = psr[i];
+
+                if (item.SurahNo == sn) {
+                    
+                    ano = item.mx;
+                }
+                else if (ano > 0) {
+                    break;
+                }
+
+            }
+            return ano;
+        }
+
+        function setnavig(an) {
+            var obj = getpsr(an);
+            document.getElementById("ddlSurah").value = obj.SurahNo;
+            document.getElementById("ddlParah").value = obj.ParahNo;
+
+            var totalrukus = getrukus(obj.SurahNo);
+          
+            var ddlrukh = document.getElementById("ddlRuku");
+           
+
+            ddlrukh.innerHTML = "";
+            for (var i = 1; i <= totalrukus; i++) {
+             
+                var el = document.createElement("option");
+                el.value = i;
+                el.textContent = i;
+
+                ddlrukh.appendChild(el);
+            }
+
+            ddlrukh.value = obj.RukhSurahNo;
+
+            var totalayahs = gettotalayahs(obj.SurahNo);
+            var ddlayahs = document.getElementById("ddlayahs");
+
+            ddlayahs.innerHTML = "";
+            for (var i = 1; i <= totalayahs; i++) {
+
+                var el = document.createElement("option");
+                el.value = i;
+                el.textContent = i;
+
+                ddlayahs.appendChild(el);
+            }
+
+            
+        }
+
+
         var currentayah = 0;
         $(document).ready(function () {
             GetAyah(1);
+            var targetx = document.getElementById("tree");
+            createTree(Tree, targetx, 1, 7);
         });
         $(function () {
             $("#slider").slider();
         });
+
+        function tbAyahNo_keyup(evt, obj) {
+            if (evt.keyCode == 13) {
+                GetAyah(obj);
+            }
+        }
     </script>
 </head>
 <body>
@@ -308,7 +557,8 @@
 
                                 </span>
                             </button>
-                            <input type="text" style="width: 90px;" value="1587" />
+                            <input id="tbAyahNo" type="number" onchange="GetAyah(this.value);" onkeyup="    tbAyahNo_keyup(event, this.value);" style="width: 90px;" value="1" />
+
                             <button class="btn" onclick="GetAyah(currentayah-1);">
                                 <span class="glyphicon glyphicon-backward">
 
@@ -322,26 +572,9 @@
                         </div>
                     </div>
                     <div class="row">
-                        <script type="text/javascript">
-                            var Tree = new Array;
-                            // nodeId | parentNodeId | nodeName | nodeUrl
-                            //Tree[0] = "1|0|1. الم|#";
-                            //Tree[1] = "2|1|1. الفاتحة|#";
-                            //Tree[2] = "3|1|2. البقرة|#";
-                            //Tree[3] = "4|0|2. سَيَقُولُ|#";
-                            //Tree[4] = "5|0|2. سَيَقُولُ|#";
-                            //Tree[5] = "6|0|2. سَيَقُولُ|#";
-                            Tree[0] = "1|0|القرآن المجيد|#";
-                            Tree[1] = "2|1|1. الم|#";
-                            Tree[2] = "3|2|1. الفاتحة|#";
-                            Tree[3] = "4|2|2. البقرة|#";
-                            Tree[4] = "5|1|2. سَيَقُولُ|#";
-                        </script>
 
-                        <div class="tree">
-                            <script>
-                                createTree(Tree, 1, 7);
-                            </script>
+                        <div class="tree" id="tree">
+
                         </div>
                     </div>
                     <div class="row">
@@ -354,36 +587,192 @@
                                 </ul>
                             </div>
                             <div class="row" style="margin-left:0px">
+                                <div class="col-lg-2">پارہ</div>
+                                <div class="col-lg-8">
+                                    <select id="ddlParah" style="min-width:200px">
+                                        <option value="1">الم </option>
+                                        <option value="2">سیقول </option>
+                                        <option value="3">تلک الرسل </option>
+                                        <option value="4">لن تنالوالبر</option>
+                                        <option value="5">والمحصنت</option>
+                                        <option value="6">لایحب اللہ </option>
+                                        <option value="7">واذاسمعوا</option>
+                                        <option value="8">ولواننا</option>
+                                        <option value="9">قال الملاء</option>
+                                        <option value="10">واعلموا</option>
+                                        <option value="11">یعتذرون </option>
+                                        <option value="12">ومامن دآبۃ</option>
+                                        <option value="13">وماابرئ</option>
+                                        <option value="14">ربما</option>
+                                        <option value="15">سبحن الذی </option>
+                                        <option value="16">قال الم </option>
+                                        <option value="17">اقترب للناس</option>
+                                        <option value="18">قد افلح</option>
+                                        <option value="19">وقال الذین </option>
+                                        <option value="20">امن خلق</option>
+                                        <option value="21">اتل مااوحی</option>
+                                        <option value="22">ومن یقنت </option>
+                                        <option value="23">ومالی </option>
+                                        <option value="24">فمن اظلم </option>
+                                        <option value="25">الیہ یرد</option>
+                                        <option value="26">حم </option>
+                                        <option value="27">قال فماخطبکم </option>
+                                        <option value="28">قدسمع اللہ </option>
+                                        <option value="29">تبارک الذی </option>
+                                        <option value="30">عم یتسآءلون </option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-2 text-right table-bordered">30</div>
+                            </div>
+                            <div class="row" style="margin-left:0px">
                                 <div class="col-lg-2">سورہ</div>
-                                <div class="col-lg-8"><select style="min-width:200px"><option>الفاتحة</option></select></div>
+                                <div class="col-lg-8">
+                                    <select id="ddlSurah" style="min-width:200px">
+                                        <option value="1"> الفاتحة</option>
+                                        <option value="2">البقرة</option>
+                                        <option value="3">آل عمران</option>
+                                        <option value="4">النسآء</option>
+                                        <option value="5">المآئدہ</option>
+                                        <option value="6">الانعام</option>
+                                        <option value="7">الاعراف</option>
+                                        <option value="8">الانفال</option>
+                                        <option value="9">التوبہ</option>
+                                        <option value="10">یونس</option>
+                                        <option value="11">ھود</option>
+                                        <option value="12">یوسف</option>
+                                        <option value="13">الرعد</option>
+                                        <option value="14">ابراھیم</option>
+                                        <option value="15">الحجر</option>
+                                        <option value="16">النحل</option>
+                                        <option value="17">الإسراء</option>
+                                        <option value="18">الكهف</option>
+                                        <option value="19">مريم</option>
+                                        <option value="20">طه</option>
+                                        <option value="21">الأنبياء</option>
+                                        <option value="22">الحج</option>
+                                        <option value="23">المؤمنون</option>
+                                        <option value="24">النور</option>
+                                        <option value="25">الفرقان</option>
+                                        <option value="26">الشعراء</option>
+                                        <option value="27">النمل</option>
+                                        <option value="28">القصص</option>
+                                        <option value="29">العنكبوت</option>
+                                        <option value="30">الروم</option>
+                                        <option value="31">لقمان</option>
+                                        <option value="32">السجدة</option>
+                                        <option value="33">الأحزاب</option>
+                                        <option value="34">سبأ</option>
+                                        <option value="35">فاطر</option>
+                                        <option value="36">يس</option>
+                                        <option value="37">الصافات</option>
+                                        <option value="38">ص</option>
+                                        <option value="39">الزمر</option>
+                                        <option value="40">غافر</option>
+                                        <option value="41">فصلت</option>
+                                        <option value="42">الشورى</option>
+                                        <option value="43">الزخرف</option>
+                                        <option value="44">الدخان</option>
+                                        <option value="45">الجاثية</option>
+                                        <option value="46">الأحقاف</option>
+                                        <option value="47">محمد</option>
+                                        <option value="48">الفتح</option>
+                                        <option value="49">الحجرات</option>
+                                        <option value="50">ق</option>
+                                        <option value="51">الذاريات</option>
+                                        <option value="52">الطور</option>
+                                        <option value="53">النجم</option>
+                                        <option value="54">القمر</option>
+                                        <option value="55">الرحمن</option>
+                                        <option value="56">الواقعة</option>
+                                        <option value="57">الحديد</option>
+                                        <option value="58">المجادلة</option>
+                                        <option value="59">الحشر</option>
+                                        <option value="60">الممتحنة</option>
+                                        <option value="61">الصف</option>
+                                        <option value="62">الجمعة</option>
+                                        <option value="63">المنافقون</option>
+                                        <option value="64">التغابن</option>
+                                        <option value="65">الطلاق</option>
+                                        <option value="66">التحريم</option>
+                                        <option value="67">الملك</option>
+                                        <option value="68">القلم</option>
+                                        <option value="69">الحاقة</option>
+                                        <option value="70">المعارج</option>
+                                        <option value="71">نوح</option>
+                                        <option value="72">الجن</option>
+                                        <option value="73">المزمل</option>
+                                        <option value="74">المدثر</option>
+                                        <option value="75">القيامة</option>
+                                        <option value="76">الإنسان</option>
+                                        <option value="77">المرسلات</option>
+                                        <option value="78">النبأ</option>
+                                        <option value="79">النازعات</option>
+                                        <option value="80">عبس</option>
+                                        <option value="81">التكوير</option>
+                                        <option value="82">الإنفطار</option>
+                                        <option value="83">المطففين</option>
+                                        <option value="84">الانشقاق</option>
+                                        <option value="85">البروج</option>
+                                        <option value="86">الطارق</option>
+                                        <option value="87">الأعلى</option>
+                                        <option value="88">الغاشية</option>
+                                        <option value="89">الفجر</option>
+                                        <option value="90">البلد</option>
+                                        <option value="91">الشمس</option>
+                                        <option value="92">الليل</option>
+                                        <option value="93">الضحى</option>
+                                        <option value="94">الشرح</option>
+                                        <option value="95">التين</option>
+                                        <option value="96">العلق</option>
+                                        <option value="97">القدر</option>
+                                        <option value="98">البينة</option>
+                                        <option value="99">الزلزلة</option>
+                                        <option value="100">العاديات</option>
+                                        <option value="101">القارعة</option>
+                                        <option value="102">التکاثر</option>
+                                        <option value="103">العصر</option>
+                                        <option value="104">الهمزة </option>
+                                        <option value="105">الفیل</option>
+                                        <option value="106">قریش</option>
+                                        <option value="107">الماعون </option>
+                                        <option value="108">الكوثر</option>
+                                        <option value="109">الكافرون</option>
+                                        <option value="110">النصر</option>
+                                        <option value="111">الہب</option>
+                                        <option value="112">الاخلاص</option>
+                                        <option value="113">الفلق</option>
+                                        <option value="114">الناس</option>
+                                    </select>
+                                </div>
                                 <div class="col-lg-2 text-right table-bordered">14</div>
                             </div>
                             <div class="row" style="margin-left:0px">
                                 <div class="col-lg-2">رکوع</div>
-
-                                <div class="col-lg-8"><select style="min-width:200px"><option>الفاتحة</option></select></div>
+                                <div class="col-lg-8">
+                                    <select id="ddlRuku" style="min-width:200px"></select>
+                                </div>
                                 <div class="col-lg-2 text-right table-bordered">6</div>
                             </div>
                             <div class="row" style="margin-left:0px">
                                 <div class="col-lg-2">آیت</div>
-                                <div class="col-lg-8"><input style="max-width:200px" type="text" name="name" value="0" /></div>
+                                <div class="col-lg-8">
+                                    <select id="ddlayahs" style="min-width:200px"></select>
+                                </div>
                                 <div class="col-lg-2 text-right table-bordered">54</div>
                             </div>
-                            <div class="row" style="margin-left:0px">
-                                <div class="col-lg-2">پارہ</div>
-                                <div class="col-lg-8"><select style="min-width:200px"><option>الفاتحة</option></select></div>
-                                <div class="col-lg-2 text-right table-bordered">30</div>
-                            </div>
-                            <div class="row" style="margin-left:0px">
+
+                            <!--<div class="row" style="margin-left:0px">
                                 <div class="col-lg-2">رکوع</div>
-                                <div class="col-lg-8"><select style="min-width:200px"><option>الفاتحة</option></select></div>
+                                <div class="col-lg-8"><select style="min-width:200px">
+                                    <option>1</option>
+                                    </select></div>
                                 <div class="col-lg-2 text-right table-bordered">19</div>
                             </div>
                             <div class="row" style="margin-left:0px">
                                 <div class="col-lg-2">آیت</div>
                                 <div class="col-lg-8"><input style="max-width:200px" type="text" name="name" value="0" /></div>
                                 <div class="col-lg-2 text-right table-bordered">166</div>
-                            </div>
+                            </div>-->
                             <div class="row" style="margin-left:0px">
                                 <div class="col-lg-2"><input type="button" name="name" class="btn" value="+"></div>
                                 <div class="col-lg-8"><div id="slider" style="margin-top:10px"></div></div>
@@ -418,7 +807,7 @@
 
                             </div>
                             <div class="row">
-                                <div id="tamamtarajamtab" class="container qurantranslations" style="max-height: 600px;overflow: scroll;display:block">
+                                <div id="tamamtarajamtab" class="container qurantranslations" style="display:block">
 
                                     <div class="row tarjuma-head" id="TarjumaMafhoomUlQuran-head">
                                         (ترجمہ مفہوم القرآن رفعت اعجاز صاحبہ (1433ھ—2012ء
@@ -456,9 +845,9 @@
                                     <div id="TarjumaBayanUlQuranDrIsrar-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
 
                                     </div>
-                                
+
                                     <div class="row tarjuma-head" id="TarjumaBotvi-head">
-                                        ma (تفسیر القرآن الکریم  حافظ عبدالسلام بھٹوی (1427ھ—2007ء
+                                        mc (ترجمہ القرآن الکریم  حافظ عبدالسلام بھٹوی (1427ھ—2007ء
                                     </div>
                                     <div id="TarjumaBotvi-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
 
@@ -469,12 +858,7 @@
                                     <div id="TarjumaFawaidUlQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
 
                                     </div>
-                                    <div class="row tarjuma-head" id="TarjumaFahmulQuran-head">
-                                        mc  (ترجمہ فہم القرآن میاں محمد جمیل  میاں محمد جمیل صاحب (1425ھ - 2005ء
-                                    </div>
-                                    <div id="TarjumaFahmulQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
 
-                                    </div>
                                     <div class="row tarjuma-head" id="TarjumaAlkitab-head">
                                         mc (ترجمہ الکتاب ڈاکٹر محمد عثمان صاحب (1425ھ—2005ء
                                     </div>
@@ -499,7 +883,7 @@
                                     <div id="TarjumaZakhiratulJinan-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
 
                                     </div>
-                                    
+
                                     <div class="row tarjuma-head" id="TarjumaDawateQuran-head">
                                         mc (ترجمہ دعوت قرآن شمس پیرزادہ صاحب (1416ھ - 1996ء
                                     </div>
@@ -512,7 +896,7 @@
                                     <div id="TarjumaTayseerulquran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
 
                                     </div>
-                             
+
                                     <div class="row tarjuma-head" id="TarjumaTibyanulQuran-head">
                                         mc (ترجمہ تبیان القرآن   ۔  مولانا غلام رسول سعیدی  صاحب ۔ (1416ھ—1995ء
                                     </div>
@@ -736,7 +1120,7 @@
 
                                     </div>
                                 </div>
-                                <div id="lafzigrammertab" class="container qurantranslations" style="max-height: 600px;overflow: scroll">
+                                <div id="lafzigrammertab" class="container qurantranslations">
                                     <div class="row tarjuma-head" id="TarjumaLafziNazarAhmad-head">
                                         mc (ترجمہ لفظی حافظ نذر احمد (1408ھ - 1987ء
                                     </div>
@@ -771,8 +1155,8 @@
                                     <div class="row tarjuma-body" id="MutalaQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
 
                                     </div>
-                                    
-   
+
+
 
                                     <div class="row tarjuma-head" id="ColorTarjuma-head">
                                         mc (رنگین ترجمہ (1436ھ - 2015ء
@@ -814,11 +1198,784 @@
 
 
                                 </div>
+                                <div id="tafseermojoodatab" class="container qurantranslations">
+                                    <div class="row tarjuma-head" id="TafseerMarifulFurqan-head">
+                                        ma (تفسیر معارف الفرقان۔ مفسر: مولانا عبدالقیوم قاسمی صاحب  (1437ھ - 2016ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerMarifulFurqan-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaRohulQuran-head">
+                                        (ترجمہ روح القران   ۔ ڈاکٹر محمد اسلم صدیقی صاحب ۔ (1433ھ—2012ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TarjumaRohulQuran-body" style="min-height:150px; background-color:rgb(226,238,210)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerRohulQuran-head">
+                                        ma (تفسیر روح القران  ۔ ڈاکٹر محمد اسلم صدیقی صاحب ۔ (1433ھ—2012ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerRohulQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaMadni-head">
+                                        (ترجمہ مدنی   مولانا اسحاق مدنی صاحب  (آزاد کشمیر) (1432ھ—2012ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TarjumaMadni-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerMadarikalTanzeel-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerMadni-head">
+                                        mc (تفسیر مدنی  مولانا اسحاق مدنی صاحب  (آزاد کشمیر) (1432ھ—2012ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerMadni-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerMadniKabeer-head">
+                                        ma (تفسیر مدنی کبیر  مولانا اسحاق مدنی صاحب  (آزاد کشمیر) (1432ھ—2012ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerMadniKabeer-body">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaMafhoomUlQuran-head">
+                                        (ترجمہ مفہوم القرآن رفعت اعجاز صاحبہ (1433ھ—2012ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TarjumaMafhoomUlQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerMafhoomUlQuran-head">
+                                        mc (تفسیر مفہوم القرآن  رفعت اعجاز صاحبہ (1429ھ—2012ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerMafhoomUlQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="KhulasaMazameenQuran-head">
+                                        mc (خلاصہ مضامین قرآن انجینئر نوید احمد صاحب (1433ھ - 2012ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="KhulasaMazameenQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaBotvi-head">
+                                        mc (ترجمہ القرآن الکریم  حافظ عبدالسلام بھٹوی (1427ھ—2007ء
+                                    </div>
+                                    <div id="TarjumaBotvi-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerUlQuranKarim-head">
+                                        ma (تفسیر القرآن الکریم  حافظ عبدالسلام بھٹوی (1427ھ—2007ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerUlQuranKarim-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TafseerDawatulQuran-head">
+                                        ma (تفسیر دعوۃ القرآن ابو نعمان سیف اللہ خالد صاحب (1431ھ—2010ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerDawatulQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaAnwarulbayan-head">
+                                        mc (ترجمہ انوارالبیان مولانا عاشق الہٰی صاحب (1430ھ—2009ء
+                                    </div>
+                                    <div id="TarjumaAnwarulbayan-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TafseerAnwarUlBayan-head">
+                                        ma (تفسیر انوارالبیان مولانا عاشق الہٰی صاحب (1430ھ—2009ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerAnwarUlBayan-body">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaAsanQuran-head">
+                                        mc (ترجمہ آسان قرآن مفتی تقی عثمانی صاحب (1429ھ—2009ء
+                                    </div>
+                                    <div id="TarjumaAsanQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerAsanQuran-head">
+                                        mc (تفسیر آسان قرآن مفتی تقی عثمانی صاحب (1429ھ—2009ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerAsanQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TarjumaBayanUlQuranDrIsrar-head">
+                                        mc (ترجمہ بیان القرآن ڈاکٹر اسرار احمد صاحب (1428ھ—2008ء
+                                    </div>
+                                    <div id="TarjumaBayanUlQuranDrIsrar-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerBayanUlQuranDrIsrar-head">
+                                        mc (تفسیر بیان القرآن ڈاکٹر اسرار احمد صاحب (1428ھ—2008ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerBayanUlQuranDrIsrar-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaAlkitab-head">
+                                        mc (ترجمہ الکتاب ڈاکٹر محمد عثمان صاحب (1425ھ—2005ء
+                                    </div>
+                                    <div id="TarjumaAlkitab-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerAlkitab-head">
+                                        mc (تفسیر الکتاب ڈاکٹر محمد عثمان صاحب (1425ھ—2005ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerAlkitab-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaFawaidUlQuran-head">
+                                        mc (ترجمہ فوائد القران ۔ مرتب عبدالقیوم مہاجر مدنی صاحب  (1425ھ - 2005ء
+                                    </div>
+                                    <div id="TarjumaFawaidUlQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerFawaidUlQuran-head">
+                                        mc (تفسیر فوائد القران ۔ مرتب عبدالقیوم مہاجر مدنی صاحب ۔ (1425ھ - 2005ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerFawaidUlQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TarjumaFahmulQuran-head">
+                                        mc  (ترجمہ فہم القرآن میاں محمد جمیل  میاں محمد جمیل صاحب (1425ھ - 2005ء
+                                    </div>
+                                    <div id="TarjumaFahmulQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerFahmulQuran-head">
+                                        mc (تفسیر فہم القرآن میاں محمد جمیل میاں محمد جمیل صاحب (1425ھ - 2005ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerFahmulQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="MukhtasarTafseerAteeq-head">
+                                        mc (مختصر تفسیر عتیق  ۔ مفتی عتیق الرحمن شہید  (1423ھ - 2002ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="MukhtasarTafseerAteeq-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TarjumaTaiseerurRehman-head">
+                                        mc (ترجمہ تیسیر الرحمن لبیان القرآن   ۔ محمد لقمان سلفی صاحب ۔ (1421ھ—2000ء
+                                    </div>
+                                    <div id="TarjumaTaiseerurRehman-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerTaiseerurRehman-head">
+                                        mc (تفسیر تیسیر الرحمن لبیان القرآن   ۔ محمد لقمان سلفی صاحب ۔ (1421ھ—2000ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerTaiseerurRehman-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TarjumaImdadulKaram-head">
+                                        mc (ترجمہ امدادالکرم  ۔ محمد امداد حسین پیرزادہ  (1420ھ - 2000ء
+                                    </div>
+                                    <div id="TarjumaImdadulKaram-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TafseerImdadulKaram-head">
+                                        ma (تفسیر امداد الکرم  ۔ محمد امداد حسین پیرزادہ  (1420ھ - 2000ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerImdadulKaram-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                </div>
+                                <div id="tafseerwusta1tab" class="container qurantranslations">
+                                    <div class="row tarjuma-head" id="TarjumaZakhiratulJinan-head">
+                                        mc (ترجمہ ذخیرۃ الجنان ۔ مترجم مولانا سرفراز خان صفدر صاحب (1419ھ - 1998ء
+                                    </div>
+                                    <div id="TarjumaZakhiratulJinan-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerZakhiratulJinan-head">
+                                        ma (تفسیر ذخیرۃ الجنان۔ مفسر:  مولانا سرفراز خان صفدر صاحب   (1419ھ - 1998ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerZakhiratulJinan-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaTayseerulquran-head">
+                                        mc (ترجمہ تیسیر القرآن مولانا عبدالرحمن کیلانی صاحب (1416ھ—1996ء
+                                    </div>
+                                    <div id="TarjumaTayseerulquran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerTayseerulquran-head">
+                                        mc (تفسیر تیسیر القرآن مولانا عبدالرحمن کیلانی صاحب (1416ھ—1996ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerTayseerulquran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaDawateQuran-head">
+                                        mc (ترجمہ دعوت قرآن شمس پیرزادہ صاحب (1416ھ - 1996ء
+                                    </div>
+                                    <div id="TarjumaDawateQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerDawateQuran-head">
+                                        mc  (تفسیر دعوت قرآن شمس پیرزادہ صاحب (1416ھ - 1996ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerDawateQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaTibyanulQuran-head">
+                                        mc (ترجمہ تبیان القرآن   ۔  مولانا غلام رسول سعیدی  صاحب ۔ (1416ھ—1995ء
+                                    </div>
+                                    <div id="TarjumaTibyanulQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerTibyanulQuran-head">
+                                        ma (تفسیر تبیان القرآن   ۔  مولانا غلام رسول سعیدی  صاحب ۔ (1416ھ—1995ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerTibyanulQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TarjumaUrwatUlWasqa-head">
+                                        mc (ترجمہ عروۃ الوثقی ۔ مرتب   (1414ھ - 1994ء
+                                    </div>
+                                    <div id="TarjumaUrwatUlWasqa-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerUrwatUlWasqa-head">
+                                        ma (تفسیر عروۃ الوثقی  ۔ مرتب   (1414ھ - 1994ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerUrwatUlWasqa-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TarjumaBayanUlQuran-head">
+                                        mc (ترجمہ بیان القرآن مولانا اشرف علی تھانوی صاحب (1352ھ—1934ء
+                                    </div>
+                                    <div id="TarjumaBayanUlQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+
+
+                                    <div class="row tarjuma-head" id="TarjumaMakkah-head">
+                                        mc (ترجمہ مکہ  مولانا جوناگڑھی صاحب   (مطبع  شاہ فہدقرآن کمپلیکس سعودی عرب) (1414ھ—1994ء
+                                    </div>
+                                    <div id="TarjumaMakkah-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerMakkah-head">
+                                        mc (تفسیر مکہ  مفسر مولانا صلاح الدین یوسف صاحب (مطبع  شاہ فہدقرآن کمپلیکس سعودی عرب) (1414ھ—1994ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerMakkah-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerAlManar-head">
+                                        mc (تفسیر المنار  ۔ مرتب   (1411ھ - 1991ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerAlManar-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TafseerAnwarUlQuran-head">
+                                        mc (تفسیر انوار القرآن  ۔ مرتب ڈاکٹر ملک غلام مرتضی   (1414ھ - 1994ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerAnwarUlQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TarjumaAlBayan_Ghamdi-head">
+                                        mc (ترجمہ البیان (الغامدی)   ۔ جاوید احمد غامدی  (1412ھ - 1992ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TarjumaAlBayan_Ghamdi-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TafseerAlBayan_Ghamdi-head">
+                                        mc (تفسیر البیان (الغامدی)   ۔ جاوید احمد غامدی  (1412ھ - 1992ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerAlBayan_Ghamdi-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TarjumaAlManar-head">
+                                        mc (ترجمہ المنار  ۔ مرتب   (1411ھ - 1991ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TarjumaAlManar-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaAhsanUlBayan-head">
+                                        mc (ترجمہ احسن البیان ۔ مرتب سید فضل الرحمن   (1410ھ - 1990ء
+                                    </div>
+                                    <div id="TarjumaAhsanUlBayan-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerAhsanUlBayan-head">
+                                        mc (تفسیر احسن البیان ۔ مرتب سید فضل الرحمن   (1410ھ - 1990ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerAhsanUlBayan-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TarjumaAsrarulTanzeel-head">
+                                        mc (ترجمہ اسرار التنزیل  ۔ مولانا محمد اکرم اعوان  (1405ھ - 1985ء
+                                    </div>
+                                    <div id="TarjumaAsrarulTanzeel-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerAsrarulTanzeel-head">
+                                        ma (تفسیر اسرار التنزیل  ۔ مولانا محمد اکرم اعوان  (1405ھ - 1985ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerAsrarulTanzeel-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TafseerNikatulQuran-head">
+                                        mc (تفسیر نکات القرآن  ۔ مولانا عبدالرحمن اشرفی  (1405ھ - 1985ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerNikatulQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                </div>
+                                <div id="tafseerwusta2tab" class="container qurantranslations">
+                                    <div class="row tarjuma-head" id="TarjumaMalimulIrfaan-head">
+                                        mc (ترجمہ معالم العرفان  ۔ مولانا صوفی عبدالحمید سواتی  (1404ھ - 1984ء
+                                    </div>
+                                    <div id="TarjumaMalimulIrfaan-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerMalimulIrfaan-head">
+                                        ma (تفسیر معالم العرفان  ۔ مولانا صوفی عبدالحمید سواتی  (1404ھ - 1984ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerMalimulIrfaan-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TarjumaWahiduddinKhan-head">
+                                        mc (ترجمہ تذکیر القرآن  وحید الدین خان صاحب (1370ھ—1970ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TarjumaWahiduddinKhan-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerTazkirulQuran-head">
+                                        mc (تفسیر تذکیر القرآن ۔  وحید الدین خان صاحب ۔ (1401ھ—1981ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerTazkirulQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TarjumaTadubbureQuran-head">
+                                        mc (ترجمہ تدبر قرآن  ۔  مولانا امین احسن اصلاحی صاحب ۔ (1400ھ—1980ء
+                                    </div>
+                                    <div id="TarjumaTadubbureQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerTadubbureQuran-head">
+                                        ma (تفسیر تدبر قرآن  ۔  مولانا امین احسن اصلاحی صاحب ۔ (1400ھ—1980ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerTadubbureQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaBaseerateQuran-head">
+                                        mc (ترجمہ بصیرت قرآن  ۔ مولانا محمد آصف قاسمی  (1400ھ - 1980ء
+                                    </div>
+                                    <div id="TarjumaBaseerateQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerBaseerateQuran-head">
+                                        mc (تفسیر بصیرت قرآن  ۔ مولانا محمد آصف قاسمی  (1400ھ - 1980ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerBaseerateQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TarjumaMajdi-head">
+                                        mc (ترجمہ ماجدی عبدالماجد دریا آبادی (1395ھ—1975ء
+                                    </div>
+                                    <div id="TarjumaMajdi-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerMajdi-head">
+                                        mc (تفسیر ماجدی عبدالماجد دریا آبادی (1395ھ—1975ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerMajdi-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TarjumaJawahirulQuran-head">
+                                        mc (ترجمہ جواہر القرآن ۔ شاہ عبدالقادر (1392ھ - 1972ء
+                                    </div>
+
+                                    <div class="row tarjuma-body" id="TarjumaJawahirulQuran-body">
+
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TafseerJawahirulQuran-head">
+                                        mc (تفسیر جواہر القرآن ۔ مولانا غلام اللہ خان صاحب ۔ (1392ھ—1972ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerJawahirulQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TarjumaSirajUlBayan-head">
+                                        mc (ترجمہ سراج البیان  ۔ مرتب مولانا حنیف ندوی  (1390ھ - 1970ء
+                                    </div>
+                                    <div id="TarjumaSirajUlBayan-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerSirajUlBayan-head">
+                                        mc (تفسیر سراج البیان  ۔ مرتب مولانا حنیف ندوی  (1390ھ - 1970ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerSirajUlBayan-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaAhmadAliLahore-head">
+                                        mc (ترجمہ احمد علی مولانا احمد علی صاحب (1396ھ—1950ء
+                                    </div>
+                                    <div id="TarjumaAhmadAliLahore-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerMehmood-head">
+                                        mc (تفسیر محمود ۔ مفتی محمود صاحب ۔ (1395ھ—1970ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerMehmood-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerMarifUlQuran-head">
+                                        ma (تفسیر معارف القرآن مفتی محمد شفیع صاحب (1389ھ—1969ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerMarifUlQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaHaqqani-head">
+                                        mcترجمہ حقانی ابو محمد عبدالحق حقانی  (1389ھ—1969ء
+                                    </div>
+                                    <div id="TarjumaHaqqani-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerHaqqani-head">
+                                        mc (تفسیر حقانی ابو محمد عبدالحق حقانی  (1389ھ—1969ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerHaqqani-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerFuyoozUlQuran-head">
+                                        mc (تفسیر فیوض القرآن  ۔ ڈاکٹر سید حامد حسن بلگرامی  (1387ھ - 1967ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerFuyoozUlQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerFizilalulQuran-head">
+                                        ma (تفسیر فی ظلال القرآن ۔ مرتب سید قطب شہید  (1382ھ - 1962ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerFizilalulQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaShahAbdulQadir-head">
+                                        mc (ترجمہ شاہ عبدالقادر شاہ عبدالقادر صاحب (1194ھ - 1780ء
+                                    </div>
+                                    <div id="TarjumaShahAbdulQadir-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerMarifUlQuran_Idrees-head">
+                                        ma (تفسیر معارف القرآن مولاناادریس کاندہلوی صاحب (1382ھ—1962ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerMarifUlQuran_Idrees-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+
+                                </div>
+                                <div id="tafseerwusta3tab" class="container qurantranslations">
+                                    <div class="row tarjuma-head" id="TarjumaKashafuRehman-head">
+                                        mc (ترجمہ کشف الرحمن  ۔ مولانا احمد سعید دہلوی  (1381ھ - 1962ء
+                                    </div>
+                                    <div id="TarjumaKashafuRehman-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerKashafuRehman-head">
+                                        ma (تفسیر کشف الرحمن  ۔ مولانا احمد سعید دہلوی  (1381ھ - 1962ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerKashafuRehman-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaAlHasnat-head">
+                                        mc (ترجمہ الحسنات   ۔ علامہ ابو الحسنات سید محمد احمد قادری  (1375ھ - 1956ء
+                                    </div>
+                                    <div id="TarjumaAlHasnat-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerAlHasnat-head">
+                                        ma (تفسیر الحسنات   ۔ علامہ ابو الحسنات سید محمد احمد قادری  (1375ھ - 1956ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerAlHasnat-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaAshrafi-head">
+                                        mc (ترجمہ اشرفی  ۔ مرتب   (1369ھ - 1950ء
+                                    </div>
+                                    <div id="TarjumaAshrafi-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerAshrafi-head">
+                                        mc (تفسیر اشرفی   ۔ مرتب   (1369ھ - 1950ء
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TarjumaNoorulIrfan-head">
+                                        mc (ترجمہ نورالعرفان(1369ھ—1950ء
+                                    </div>
+                                    <div id="TarjumaNoorulIrfan-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerNoorulIrfan-head">
+                                        mc (تفسیر نورالعرفان(1369ھ—1950ء
+                                    </div>
+
+                                    <div id="TarjumaMazharulQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerMazharulQuran-head">
+                                        mc (تفسیر مظہر القرآن  ۔ مرتب شاہ محمد مظہر اللہ دہلوی  (1369ھ - 1950ء
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaMudoodi-head">
+                                        mc (ترجمہ تفہیم القرآن مولانا سید ابوالاعلی مودودی صاحب  (1368ھ—1949ء
+                                    </div>
+                                    <div id="TarjumaMudoodi-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerMudoodi-head">
+                                        mc (تفسیر تفہیم القرآن  مولانا سید ابوالاعلی مودودی صاحب  (1368ھ—1949ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerMudoodi-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerAlSaadi-head">
+                                        mc (تفسیر السعدی  ۔ عبدالرحمن بن ناصر السعدی  ۔ (1366ھ—1947ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerAlSaadi-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaKanzulIman-head">
+                                        mc (ترجمہ کنز الایمان مولانا احمد رضاخان  بریلوی  (1364ھ—1945ء
+                                    </div>
+                                    <div id="TarjumaKanzulIman-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerKhazainUlIrfan-head">
+                                        mc (تفسیر خزائن العرفان علامہ نعیم الدین مراد آبادی (1364ھ—1945ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerKhazainUlIrfan-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaTasheelulQuran-head">
+                                        mc (ترجمہ تسہیل القران ۔ مرتب مولوی فیروزالدین صاحب  (1362ھ - 1943ء
+                                    </div>
+                                    <div id="TarjumaTasheelulQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerTasheelulQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaUsmani-head">
+                                        mc (ترجمہ عثمانی مترجم مولانا محمود الحسن  (1356ھ—1938ء
+                                    </div>
+                                    <div id="TarjumaUsmani-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerUsmani-head">
+                                        mc (تفسیر عثمانی مفسر مولانا شبیر احمد عثمانی صاحب (1356ھ—1938ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerUsmani-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaBayanUlQuran-head">
+                                        mc (ترجمہ بیان القرآن مولانا اشرف علی تھانوی صاحب (1352ھ—1934ء
+                                    </div>
+                                    <div id="TarjumaBayanUlQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerBayanUlQuran-head">
+                                        mc (تفسیر بیان القرآن مولانا اشرف علی تھانوی صاحب (1352ھ—1934ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerBayanUlQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaTarjumanUlQuran-head">
+                                        mc (ترجمہ ترجمان القرآن  ۔ مولانا ابوالکلام آزاد صاحب ۔ (1350ھ—1931ء
+                                    </div>
+                                    <div id="TarjumaTarjumanUlQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerTarjumanUlQuran-head">
+                                        mc (تفسیر ترجمان القرآن  ۔ مولانا ابوالکلام آزاد صاحب ۔ (1350ھ—1931ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerTarjumanUlQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+
+
+
+
+                                </div>
+                                <div id="tafseerolatab" class="container qurantranslations">
+                                    <div class="row tarjuma-head" id="TafseerAhsanUlTafaseer-head">
+                                        mc (تفسیر احسن التفاسیر ۔ حافظ محمد  سید احمد حسن ۔  (1315ھ—1897ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerAhsanUlTafaseer-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerSanai-head">
+                                        mc (تفسیر ثنائی ۔ ثناء اللہ امرتسری ۔  (1313ھ—1895ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerSanai-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaMozihulQuran-head">
+                                        mc (ترجمہ موضح القرآن  ۔ مرتب شاہ عبد القادر  (1256ھ - 1840ء
+                                    </div>
+                                    <div id="TarjumaMozihulQuran-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerMozihulQuran-head">
+                                        mc (تفسیر موضح القرآن  ۔ مرتب شاہ عبد القادر  (1256ھ - 1840ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerMozihulQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerMazhari-head">
+                                        ma (تفسیر مظہری قاضی ثناءاللہ پانی پتی (1220ھ—1820ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerMazhari-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerAshrafulHawashi-head">
+                                        mc (تفسیر اشرف الحواشی ۔ شیخ محمد عبدہ الفلاح ۔ (1233ھ—1818ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerAshrafulHawashi-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseeratAhmadia-head">
+                                        mc (تفسیرات احمدیہ  ۔ مرتب ملااحمد جیون  (1069ھ ۔ 1659ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseeratAhmadia-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaDureeMansoor-head">
+                                        mc (ترجمہ در منثور جلال الدین سیوطی (908ھ—1507ء
+                                    </div>
+                                    <div id="TarjumaDureeMansoor-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerDureeMansoor-head">
+                                        ma (تفسیر در منثور جلال الدین سیوطی (908ھ—1507ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerDureeMansoor-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerIbnAbbas-head">
+                                        mc (تفسیر ابن عباس پروفیسر محمد سعید احمد عاطف (817  ھ—1416ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerIbnAbbas-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TarjumaFatehMuhammad-head">
+                                        mc (ترجمہ ابن کثیر(فتح محمد
+                                    </div>
+                                    <div id="TarjumaFatehMuhammad-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerIbnKaseer-head">
+                                        ma (تفسیر ابن کثیر حافظ عماد الدین ابوالفداء ابن کثیر صاحب (770ھ—1370ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerIbnKaseer-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TarjumaAnwarulbayan-head">
+                                        mc (ترجمہ انوارالبیان مولانا عاشق الہٰی صاحب (1430ھ—2009ء
+                                    </div>
+                                    <div id="TarjumaAnwarulbayan-body" class="row tarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerMadarikalTanzeel-head">
+                                        mc (تفسیر مدارک التنزیل ۔ ابوالبرکات عبداللہ بن احمد محمد بن محمود النسفی ۔ (710ھ—1310ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerMadarikalTanzeel-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerQurtabi-head">
+                                        ma (تفسیر قرطبی ۔  ابو عبداللہ محمد بن احمد بن ابوبکر قرطبی ۔ (671ھ—1273ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerQurtabi-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerBaghvi-head">
+                                        ma (تفسیر بغوی  ۔ ابو محمد حسین بن مسعود الفراء بغوی  (516ھ - 1122ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerBaghvi-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerMufradatulQuran-head">
+                                        mc (تفسیر مفردات القرآن  ۔ مولانا محمد عبدہٗ فیروز پوری  (502ھ - 1108ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerMufradatulQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                    <div class="row tarjuma-head" id="TafseerAhkamulQuran-head">
+                                        mc (تفسیر احکام القرآن للجصاص۔ مفسر: ابو احمد بن علی الرازی  (365ھ - 975ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerAhkamulQuran-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="TafseerIbneMasood-head">
+                                        mc (تفسیر ابن مسعود ۔ مترجم: مولانا شمس الدین  (300ھ - 913ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerIbneMasood-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                </div>
+                                <div id="tafseerdegartab" class="container qurantranslations">
+                                    <div class="row tarjuma-head" id="TafseerAlkousar_AT-head">
+                                        mr (تفسیر الکوثر (اہل تشیع)  ۔ محسن علی نجفی  (1432ھ - 2011ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerAlkousar_AT-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div><div class="row tarjuma-head" id="TafseerBalaghulQuran_AT-head">
+                                        mr (تفسیر بلاغ القرآن (اہل تشیع)  ۔ محسن علی نجفی  (1432ھ - 2011ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerBalaghulQuran_AT-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div><div class="row tarjuma-head" id="TafseerTafseerUlQuran_AT-head">
+                                        mr (تفسیر تفسیرالقرآن  (اہل تشیع)  ۔ سید ظفر حسن امروہوی  (1397ھ - 1977ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerTafseerUlQuran_AT-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div><div class="row tarjuma-head" id="TafseerRahnuma_AT-head">
+                                        mr (تفسیر راہنما (اہل تشیع)  ۔ آيت الله ہاشمى رفسنجاني  (1423ھ - 2002ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerRahnuma_AT-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div><div class="row tarjuma-head" id="TafseerShawahidelQurani_AT-head">
+                                        mr (تفسیر شواہد قرآنی (اہل تشیع)  ۔ شیخ محمد علی توحیدی  (1436ھ - 2015ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerShawahidelQurani_AT-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div><div class="row tarjuma-head" id="TafseerUmdatulBayan_AT-head">
+                                        mr (تفسیر عمدۃ البیان (اہل تشیع)  ۔ سید عمار علی  (1317ھ - 1900ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerUmdatulBayan_AT-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div><div class="row tarjuma-head" id="TafseerFurat_AT-head">
+                                        mr (تفسیر فرات (اہل تشیع)  ۔ فرت بن ابراہیم بن فرات کوفی  (300ھ - 913ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerFurat_AT-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div><div class="row tarjuma-head" id="TafseerFaslulkhitab_AT-head">
+                                        mr (تفسیر فصل الخطاب (اہل تشیع)  ۔ علامہ سید علی نقی النقوی  (1408ھ - 1988ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerFaslulkhitab_AT-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div><div class="row tarjuma-head" id="TafseerFaizanulRehman_AT-head">
+                                        mr (تفسیر فیضان الرحمن (اہل تشیع)  ۔ شیخ محمد حسین النجفی (1420ھ - 1999ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerFaizanulRehman_AT-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div><div class="row tarjuma-head" id="TafseerNamoona_AT-head">
+                                        mr (تفسیر نمونہ  (اہل تشیع)  ۔ سید صفدر حسین نجفی  (1406ھ - 1986ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="TafseerNamoona_AT-body" style="min-height:150px; background-color:rgb(210,234,240)">
+                                    </div>
+                                </div>
+                                <div id="misbahtab" class="container qurantranslations">
+
+
+
+
+
+
+                                    <div class="row tarjuma-head" id="ColorTarjuma-head">
+                                        mc (رنگین ترجمہ (1436ھ - 2015ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="ColorTarjuma-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+
+
+                                    <div class="row tarjuma-head" id="Keywords-head">
+                                        mc  مصباح القرآن مترادف الفاظ
+                                    </div>
+                                    <div class="row tarjuma-body" id="Keywords-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+
+
+                                    <div class="row tarjuma-head" id="ColorAyat-head">
+                                        رنگین آیت
+                                    </div>
+                                    <div class="row tarjuma-body" id="ColorAyat-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+
+
+                                    <div class="row tarjuma-head" id="ShaneNazool-head">
+                                        mc شان نزول قرآن
+                                    </div>
+                                    <div class="row tarjuma-body" id="ShaneNazool-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+
+                                    <div class="row tarjuma-head" id="AsbabeNazool-head">
+                                        mc (اسباب نزول قرآن  محمد علی نیشا پوری (465ھ—1065ء
+                                    </div>
+                                    <div class="row tarjuma-body" id="AsbabeNazool-body" style="min-height:150px; background-color:rgb(210,234,240)">
+
+                                    </div>
+
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
+
             <div id="hadithtab" class="tabcontent">
                 <h1>Ahadith section comming soon Insha Allah</h1>
             </div>
@@ -828,9 +1985,9 @@
             <div id="introtab" class="tabcontent">
                 <h1>intro section comming soon Insha Allah</h1>
             </div>
-
         </div>
     </div>
+
 
     <script>
         function opentab(evt, tabid, tabclassname, tablinks) {
@@ -842,7 +1999,7 @@
 
             $("." + tablinks).removeClass("active");
             document.getElementById(tabid).style.display = "block";
-            $(tablinks[i]).addClass("active");
+            $(tablinks).addClass("active");
         }
     </script>
 
