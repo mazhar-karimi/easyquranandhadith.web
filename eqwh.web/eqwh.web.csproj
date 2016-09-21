@@ -142,6 +142,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="ginnypig.html" />
     <Content Include="Global.asax" />
     <Content Include="img\base.gif" />
     <Content Include="img\cd.gif" />
@@ -180,6 +181,7 @@
     <Content Include="Scripts\jquery-ui-1.12.0.js" />
     <Content Include="Scripts\jquery-ui-1.12.0.min.js" />
     <Content Include="Scripts\modal.js" />
+    <Content Include="Scripts\ParahSurahRukh.js" />
     <Content Include="Scripts\popover.js" />
     <Content Include="Scripts\scrollspy.js" />
     <Content Include="Scripts\tab.js" />
@@ -209,6 +211,7 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
+    <Content Include="Scripts\qtopics.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
