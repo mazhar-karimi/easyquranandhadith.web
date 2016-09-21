@@ -24,6 +24,13 @@ function preloadIcons() {
 
 // Create the tree
 function createTree(arrName, targ, startNode, openNode) {
+
+    nodes = new Array();;
+    openNodes = new Array();
+    icons = new Array(6);
+
+    target = "";
+
     nodes = arrName;
 
     if (nodes.length > 0) {
@@ -54,11 +61,17 @@ function getArrayId(node) {
 // Puts in array nodes that will be open
 function setOpenNodes(openNode) {
     for (i = 0; i < nodes.length; i++) {
-        var nodeValues = nodes[i].split("|");
-        if (nodeValues[0] == openNode) {
-            openNodes.push(nodeValues[0]);
-            setOpenNodes(nodeValues[1]);
+
+        try {
+            var nodeValues = nodes[i].split("|");
+            if (nodeValues[0] == openNode) {
+                openNodes.push(nodeValues[0]);
+                setOpenNodes(nodeValues[1]);
+            }
+        } catch (e) {
+            console.log(nodes[i]);
         }
+
     }
 }
 // Checks if a node is open
