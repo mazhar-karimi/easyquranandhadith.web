@@ -11,20 +11,32 @@
 
     <link rel="StyleSheet" href="Content/tree.css" type="text/css">
     <script type="text/javascript" src="Scripts/tree.js"></script>
+    <script src="Scripts/jquery.sidebar.js"></script>
 
 
     <style>
-        /*.nav > li > a {
-            padding: 10px 5px;
-        }
 
-        .nav-tabs > li > a {
-            color: black;
-        }
+ 
 
-        .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-            font-weight: bold;
-        }*/
+.sidebar.left {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 270px;
+   background-color:gray;
+   z-index:285;
+}
+ 
+
+.sidebars > .sidebar {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.64);
+    position: fixed;
+    color: white;
+    padding: 20px;
+    font-size: 2em;
+    text-align: center;
+}
+
 
         .panel-body {
             padding-bottom: 0px;
@@ -238,8 +250,6 @@
 
                     xhr.send(null);
                 }
-
-
 
             }, 50);
             
@@ -617,11 +627,33 @@
         }
 
         var currentayah = 0;
-        $(document).ready(function () {
+        $(document).ready(function () 
+        {
             GetAyah(1);
             var targetx = document.getElementById("tree");
             createTree(Tree, targetx, 1, 7);
+            
+            var sides = [ "left"];
+            //$("h1 span.version").text($.fn.sidebar.version);
+
+            // Initialize sidebars
+            for (var i = 0; i < sides.length; ++i)
+            {
+                var cSide = sides[i];
+                $(".sidebar." + cSide).sidebar({ side: cSide });
+            }
+
         });
+
+        function ShowSearchBar(obj) {
+            var $this = $(obj);
+            var action = $this.attr("data-action");
+            var side = $this.attr("data-side");
+            $(".sidebar." + side).trigger("sidebar:toggle");
+            return false;
+        }
+
+
         $(function () {
 
             $("#slider").slider({
@@ -654,7 +686,27 @@
     </script>
 </head>
 <body>
+    <div class="sidebars">
 
+        <div class="container-flow sidebar left">
+            <div class="row">تلاش</div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <input type="button" name="name" value="تلاش" />
+                </div>
+                <div class="col-lg-6">
+                    <input type="text" name="tbSearch1" value="القرآن" />
+
+                </div>
+                <div class="col-lg-3">
+                    <input type="button" name="name" value="تلاش" />
+                </div>
+    
+            </div>
+
+        </div>
+      
+    </div>
     <!--data-spy="scroll" data-target=".navbar" data-offset="50"-->
     <div class="container">
         <div class="row">
@@ -677,7 +729,7 @@
                         <ul class="subtab">
                             <li><a href="#" class="qurantablinks" onclick="opentab(event, 'parahsurahtab', 'qurantabcontent', 'qurantablinks')">پارہ و سورہ</a></li>
                             <li><a href="#" class="qurantablinks" onclick="opentab(event, 'qurantopictab', 'qurantabcontent', 'qurantablinks'); load_quran_topics();">موضوعات</a></li>
-                            <li><a href="#" class="qurantablinks" onclick="opentab(event, 'quransearchtab', 'qurantabcontent', 'qurantablinks')">  تلاش</a></li>
+                            <li><a href="#" data-action="toggle" data-side="left" class="qurantablinks" onclick="opentab(event, 'quransearchtab', 'qurantabcontent', 'qurantablinks'); ShowSearchBar(this)">  تلاش</a></li>
                         </ul>
                     </div>
                     <div class="row">
