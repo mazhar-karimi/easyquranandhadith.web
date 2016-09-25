@@ -3,6 +3,8 @@ using eqwh.web.Models;
 using System;
 using System.ComponentModel;
 using System.Reflection;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace eqwh.web.DataReaders
 {
@@ -10,20 +12,34 @@ namespace eqwh.web.DataReaders
     {
         public AyatRow GetAyat(int ayahno)
         {
-
             AyatRow r = new AyatRow();
             var fields = LuceneDB.Get.FieldInfo;
 
             foreach (var item in fields)
             {
-                var s =  LuceneDB.Get.GetContent(ayahno, item.Key);
+                var s = LuceneDB.Get.GetContent(ayahno, item.Key);
                 r.GetType().GetProperty(item.Key).SetValue(r, Convert.ChangeType(s,
-                    r.GetType().GetProperty(item.Key).PropertyType));               
+                    r.GetType().GetProperty(item.Key).PropertyType));
             }
 
             return r;
         }
+        public int[] SearchAyat(string word)
+        {
+             var fields = LuceneDB.Get.FieldInfo.Keys.ToArray();
+            
+            var field_arr = "";
 
+            for (int i = 0; i < fields.Length; i++)
+			{
+                if(i < fields.Length)
+			  field_arr += fields[i] + ",";
+                else
+                    field_arr += fields[i] ;
+
+			}
+            return LuceneDB.Get.Search(word,)
+        }
         //public static void SetValueFromString(this object target, string propertyName, string propertyValue)
         //{
         //    PropertyInfo oProp = target.GetType().GetProperty(propertyName);
@@ -51,7 +67,7 @@ namespace eqwh.web.DataReaders
 
         public string GetAyat(int ayahno, string colname)
         {
-           return LuceneDB.Get.GetContent(ayahno, colname);
+            return LuceneDB.Get.GetContent(ayahno, colname);
         }
     }
 }
