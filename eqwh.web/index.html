@@ -196,6 +196,31 @@
     </script>
 
     <script>
+        function tb_quran_Search1() {
+            var searching_word = document.getElementById("tb_quran_Search1").value;
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("get", "ayah/getayat/" + ayahno, true);
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+
+            xhr.onload = function () {
+                if (xhr.response && xhr.responseText != null)
+                {
+                    var quran_search_json = JSON.parse(xhr.response);
+                    
+                    for (var i = 0; i < quran_topics_json.length ; i++)
+                    {
+                                              
+
+                    }
+                   
+                }
+            };
+
+            xhr.send(null);
+
+        }
         function load_quran_topics() {
             var targetx = document.getElementById("quran_topic_tree");
 
@@ -520,7 +545,36 @@
         }
 
         function linq(arr) {
+            linq.skip = function (n) {
+                var tarr = [];
+                for (var i = 0; i < arr.length; i++) {
+                    if (i >= n) {
+                        tarr.push(arr[i]);
+                    }
+                }
+                return linq(tarr);
+            }
+            linq.take = function (n) {
+                var tarr = [];
+                for (var i = 0; i < arr.length && i < n; i++) {
 
+                    tarr.push(arr[i]);
+
+                }
+                return linq(tarr);
+            }
+
+            ///uc
+            linq.orderby = function (exp) {
+                for (var i = 0; i < arr.length; i++) {
+
+                    var si = arr[i];
+
+                    for (var j = 1; j < arr.length; j++) {
+
+                    }
+                }
+            };
             linq.where = function (exp, pred, async) {
                 var tarr = [];
 
@@ -692,14 +746,14 @@
             <div class="row">تلاش</div>
             <div class="row">
                 <div class="col-lg-3">
-                    <input type="button" name="name" value="تلاش" />
+                    <span style="z-index:4" class="glyphicon glyphicon-calendar"></span>                   
                 </div>
                 <div class="col-lg-6">
-                    <input type="text" name="tbSearch1" value="القرآن" />
+                    <input type="text" style="width:50px" id="tb_quran_Search1" value="القرآن" />
 
                 </div>
                 <div class="col-lg-3">
-                    <input type="button" name="name" value="تلاش" />
+                    <span onclick="seach_quran();" style="z-index:4" class="glyphicon glyphicon-search"></span>            
                 </div>
     
             </div>
