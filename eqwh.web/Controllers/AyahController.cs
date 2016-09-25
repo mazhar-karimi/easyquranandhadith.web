@@ -12,12 +12,24 @@ namespace eqwh.web.Controllers
     {
         [Route("Ayah/GetAyat/{ayahno}")]
         [HttpGet]
+        
         public AyatRow GetAyat(int ayahno)
         {
             if (ayahno > 6348)
                 return null;
 
                 return DataReaderFactory.Get.GetAyat(ayahno);
+        }
+
+        [Route("Ayah/SearchAyat/{word}")]
+        [HttpGet]
+
+        public int[] SearchAyat(string word)
+        {
+            if (String.IsNullOrEmpty(word))
+                return null;
+
+            return DataReaderFactory.Get.SearchAyat(word);
         }
     }
 }
