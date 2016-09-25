@@ -11,5 +11,7 @@ namespace eqwh.web.Factory
         AyatRow GetAyat(int ayahno);
 
         string GetAyat(int ayahno, string colname);
+
+        int[] SearchAyat(string word);
     }
 }
