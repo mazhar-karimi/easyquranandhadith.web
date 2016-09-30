@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\bootstrap-rtl.css" />
+    <Content Include="Content\css\site.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -176,10 +177,13 @@
     <Content Include="Scripts\collapse.js" />
     <Content Include="Scripts\dropdown.js" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\eqwh.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.0.js" />
     <Content Include="Scripts\jquery-ui-1.12.0.min.js" />
+    <Content Include="Scripts\jquery.sidebar.js" />
+    <Content Include="Scripts\jquery.sidebar.min.js" />
     <Content Include="Scripts\modal.js" />
     <Content Include="Scripts\ParahSurahRukh.js" />
     <Content Include="Scripts\popover.js" />
