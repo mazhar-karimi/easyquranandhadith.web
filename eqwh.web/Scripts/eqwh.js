@@ -353,6 +353,23 @@ function getrukus(sn) {
 }
 
 function linq(arr) {
+
+    linq.distinct = function (exp) {
+        var tarr = [];
+        var pred = "==";
+        for (var i = 0; i < arr.length; i++) {
+            // if (eval(eval("arr[i]." + Object.keys(exp)[0]) + pred + exp[Object.keys(exp)])) {
+            var ov = eval("arr[i]." + exp);
+            var o = JSON.parse("{\"" + exp + "\":\"" + ov + "\"}");
+            if (!linq(tarr).contains(o))
+                tarr.push(arr[i]);
+        }
+    }
+
+    linq.contains = function (exp) {
+        return linq(arr).first(exp, '==') == null ? false : true;
+    };
+
     linq.skip = function (n) {
         var tarr = [];
         for (var i = 0; i < arr.length; i++) {
@@ -361,7 +378,7 @@ function linq(arr) {
             }
         }
         return linq(tarr);
-    }
+    };
     linq.take = function (n) {
         var tarr = [];
         for (var i = 0; i < arr.length && i < n; i++) {
@@ -384,6 +401,10 @@ function linq(arr) {
         }
     };
     linq.where = function (exp, pred, async) {
+
+        if (!pred || pred == '')
+            pred = "==";
+
         var tarr = [];
 
         for (var i = 0; i < arr.length; i++) {
@@ -401,6 +422,14 @@ function linq(arr) {
     };
 
     linq.first = function (exp, pred) {
+
+        if (!exp) {
+            if (arr.length > 0)
+                return arr[0];
+        }
+        if (!pred || pred == '')
+            pred = "==";
+
         for (var i = 0; i < arr.length; i++) {
 
             if (eval(eval("arr[i]." + Object.keys(exp)[0]) + pred + exp[Object.keys(exp)])) {
@@ -409,10 +438,10 @@ function linq(arr) {
         }
     };
 
-    linq.first = function () {
-        if (arr.length > 0)
-            return arr[0];
-    };
+    //linq.first = function () {
+    //    if (arr.length > 0)
+    //        return arr[0];
+    //};
 
     linq.last = function (exp, pred) {
         for (var i = arr.length - 1; i >= 0; i--) {
@@ -476,7 +505,6 @@ function setnavig(an) {
 
     var ddlayahs = document.getElementById("ddlayahs");
 
-
     ddlayahs.innerHTML = "";
     for (var i = 1; i <= totalayahs; i++) {
 
@@ -491,9 +519,52 @@ function setnavig(an) {
 var currentayah = 0;
 $(document).ready(function () {
     GetAyah(1);
-    var targetx = document.getElementById("tree");
-    createTree(Tree, targetx, 1, 7);
 
+    CreateQTree();
+
+    Init_SideBar();
+
+    //incomplete work in function...
+    ddl_Parah();
+});
+
+function ddl_Parah() {
+    var parahs = [];
+
+    for (var j = 0; j < psdata.length; j++) {
+        if (parahs.length == 0) {
+            parahs.push({ Parah: psdata[j].Parah, ParahNo: psdata[j].ParahNo });
+            continue;
+        }
+
+        for (var i = 0; i < parahs.length; i++) {
+
+            if (parahs[i].Parah == psdata[j].Parah) {
+                break;
+            }
+            else {
+                parahs.push({ Parah: psdata[j].Parah, ParahNo: psdata[j].ParahNo });
+            }
+        }
+    }
+
+    var ddlParah = document.getElementById("ddlParah");  
+
+    ddlParah.innerHTML = "";
+    for (var i = 1; i <= parahs.length; i++) {
+
+        var el = document.createElement("option");
+        el.value = parahs[i].ParahNo;
+        el.textContent = parahs[i].Parah;
+
+        ddlrukh.appendChild(el);
+    }
+
+
+}
+
+
+function Init_SideBar() {
     var sides = ["left"];
     //$("h1 span.version").text($.fn.sidebar.version);
 
@@ -502,8 +573,38 @@ $(document).ready(function () {
         var cSide = sides[i];
         $(".sidebar." + cSide).sidebar({ side: cSide });
     }
+}
 
-});
+function CreateQTree() {
+    var targetx = document.getElementById("tree");
+
+    var Tree = [];
+
+    Tree[0] = "1|0|القرآن المجيد|getsurah(1)\";\n";
+    var nodeno = 2;
+    var x = 1;
+    for (var i = 1; i <= 30; i++) {
+        var parah = linq(psdata).first({ ParahNo: i });
+        var parahnodeno = nodeno;
+
+        Tree[x] = nodeno + "|" + 1 + "|" + parah.Parah + "|gotoayat(" + parah.parah_ayatid + ")";
+
+        var surahs = linq(psdata).where({ ParahNo: i }).tolist();
+
+        for (var j = 0; j < surahs.length; j++) {
+            nodeno++;
+            x++;
+
+            var item = surahs[j];
+
+            Tree[x] = nodeno + "|" + parahnodeno + "|" + item.Surah + "|gotoayat(" + item.surah_ayatid + ")";
+        }
+        nodeno++;
+        x++;
+    }
+
+    createTree(Tree, targetx, 1, 7);
+}
 
 //$(window).click(function () {
 //    $(".sidebar.left").trigger("sidebar:toggle");
