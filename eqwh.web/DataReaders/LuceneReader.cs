@@ -26,19 +26,21 @@ namespace eqwh.web.DataReaders
         }
         public int[] SearchAyat(string word)
         {
-             var fields = LuceneDB.Get.FieldInfo.Keys.ToArray();
-            
-            var field_arr = "";
+             var fields = LuceneDB.Get.FieldInfo.Keys.ToArray().Take(12).ToArray();
 
-            for (int i = 0; i < fields.Length; i++)
-			{
-                if(i < fields.Length)
-			  field_arr += fields[i] + ",";
-                else
-                    field_arr += fields[i] ;
+            // var field_arr = String.Join(",", fields);
 
-			}
-            return LuceneDB.Get.Search(word,)
+            ////for (int i = 0; i < fields.Length; i++)
+            ////{
+            ////    if(i < fields.Length)
+            ////  field_arr += fields[i] + ",";
+            ////    else
+            ////        field_arr += fields[i] ;
+
+            ////}
+             var ay_arr= LuceneDB.Get.Search(word, fields);
+
+             return ay_arr;
         }
         //public static void SetValueFromString(this object target, string propertyName, string propertyValue)
         //{
