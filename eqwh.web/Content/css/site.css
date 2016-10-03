@@ -1,0 +1,174 @@
+﻿
+ 
+
+.sidebar.left {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 270px;
+   background-color:gray;
+   z-index:285;
+}
+ 
+
+.sidebars > .sidebar {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.64);
+    position: fixed;
+    color: white;
+    padding: 20px;
+    font-size: 2em;
+    text-align: center;
+}
+
+
+        .panel-body {
+            padding-bottom: 0px;
+        }
+
+        .tree {
+            padding: 0px;
+            background-color: lightyellow;
+            min-height: 500px;
+            max-height: 500px;
+            overflow: scroll;
+             font-family: alvi nastaleeq;
+              font-size: 18px;
+        }
+
+       
+        /*--------------------------*/
+        ul.tab {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Float the list items side by side */
+            ul.tab li {
+                float: right;
+            }
+
+                /* Style the links inside the list items */
+                ul.tab li a {
+                    display: inline-block;
+                    color: black;
+                    text-align: center;
+                    padding: 10px 16px;
+                    text-decoration: none;
+                    transition: 0.3s;
+                    font-size: 19px;
+                    font-family: alvi nastaleeq;
+                }
+
+                    /* Change background color of links on hover */
+                    ul.tab li a:hover {
+                        background-color: #ddd;
+                    }
+
+                    /* Create an active/current tablink class */
+                    ul.tab li a:focus, .active {
+                        background-color: #ccc;
+                    }
+        /*--------------------*/
+
+
+        ul.subtab {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Float the list items side by side */
+            ul.subtab li {
+                float: right;
+            }
+
+                /* Style the links inside the list items */
+                ul.subtab li a {
+                    display: inline-block;
+                    color: black;
+                    text-align: center;
+                    padding: 8px 14px;
+                    text-decoration: none;
+                    transition: 0.3s;
+                    font-size: 17px;
+                    font-family: alvi nastaleeq;
+                }
+
+                    /* Change background color of links on hover */
+                    ul.subtab li a:hover {
+                        background-color: #ddd;
+                    }
+
+                    /* Create an active/current tablink class */
+                    ul.subtab li a:focus, .active {
+                        background-color: #ccc;
+                    }
+
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            -webkit-animation: fadeEffect 1s;
+            animation: fadeEffect 1s;
+        }
+        /* Style the tab content */
+        .qurantranslations {
+            display: none;
+            padding: 6px 12px;
+            -webkit-animation: fadeEffect 1s;
+            animation: fadeEffect 1s;
+            max-height: 600px;
+            overflow: scroll;
+        }
+
+        /*@-webkit-keyframes fadeEffect {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeEffect {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }*/
+
+        .tarjuma-head {
+            font-size: 16px;
+            font-family: alvi nastaleeq;
+        }
+
+        .tarjuma-body {
+            font-size: 20px;
+            font-family: alvi nastaleeq;
+            max-height: 150px;
+            overflow: scroll;
+        }
+
+        .ayat-body {
+            font-size: 28px;
+            /*font-family : KFGQPC Uthmanic Script HAFS;*/
+        }
+
+        .container {
+            margin-right: 0px;
+            margin-left: 0px;
+            padding-left: 0px;
+            padding-right: 16px;
+        }
