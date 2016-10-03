@@ -13,13 +13,17 @@
             var search_tree = new Array;
             search_tree[0] = "1|0|نتيجة|return false;";
 
-            for (var i = 1; i <= quran_search_json.length ; i++) {
-                var _str = "";
-                _str = "GetAyah(" + quran_search_json[i] + ")";
-                search_tree[i] = (i + 1) + "|" + (1) + "|" + quran_search_json[i] + "|" + _str;
 
+            for (var i = 0; i < quran_search_json.length ; i++)
+            {
+                var surah = getpsr(quran_search_json[i]);
+
+                var surahName = linq(psdata).first({ SurahNo: surah.SurahNo }, "==");   
+
+                search_tree[i] = (i + 1) + "|" + 1 + "|" + surahName.Surah   + "|" + "GetAyah(" + quran_search_json[i] + ")";
             }
-            createTree(search_tree, targetx, 1, 1);
+
+            createTree(search_tree, targetx, 1, 0);
 
             //var search = ['div', 'span'];
 
@@ -518,51 +522,99 @@ function setnavig(an) {
 
 var currentayah = 0;
 $(document).ready(function () {
-    GetAyah(1);
 
-    CreateQTree();
+    setTimeout(function () {
+        GetAyah(1);
+    },10);
+   
+    setTimeout(function () {
+        CreateQTree();
+    }, 10);
 
-    Init_SideBar();
+   // CreateQTree();
+
+    setTimeout(function () {
+        Init_SideBar();
+    }, 10);
+   // Init_SideBar();
 
     //incomplete work in function...
-    ddl_Parah();
+    setTimeout(function () {
+        ddl_Parah();
+    }, 10);
+    // ddl_Parah();
+
+    //incomplete work in function...
+    setTimeout(function () {
+        ddl_Surah();
+    }, 10);
+
+   // ddl_Surah();
 });
 
-function ddl_Parah() {
-    var parahs = [];
+function ddl_Surah() {
+    var surahs = [];
 
-    for (var j = 0; j < psdata.length; j++) {
-        if (parahs.length == 0) {
-            parahs.push({ Parah: psdata[j].Parah, ParahNo: psdata[j].ParahNo });
-            continue;
-        }
-
-        for (var i = 0; i < parahs.length; i++) {
-
-            if (parahs[i].Parah == psdata[j].Parah) {
-                break;
-            }
-            else {
-                parahs.push({ Parah: psdata[j].Parah, ParahNo: psdata[j].ParahNo });
-            }
-        }
+    for (var i = 1; i <= 114; i++) {
+        var surah = linq(psdata).first({ SurahNo: i }, "==");
+        surahs.push({ Surah: surah.Surah, SurahNo: surah.SurahNo });
     }
 
-    var ddlParah = document.getElementById("ddlParah");  
+    var ddlSurah = document.getElementById("ddlSurah");
 
-    ddlParah.innerHTML = "";
-    for (var i = 1; i <= parahs.length; i++) {
+    ddlSurah.innerHTML = "";
+    for (var i = 0; i < surahs.length; i++) {
 
         var el = document.createElement("option");
-        el.value = parahs[i].ParahNo;
-        el.textContent = parahs[i].Parah;
+        el.value = surahs[i].SurahNo;
+        el.textContent = surahs[i].Surah;
 
-        ddlrukh.appendChild(el);
+        ddlSurah.appendChild(el);
     }
 
 
 }
 
+function ddl_Parah() {
+    var parahs = [];
+
+    for (var i = 1; i <= 30; i++) {
+        var parah = linq(psdata).first({ ParahNo: i }, "==");
+        parahs.push({ Parah: parah.Parah, ParahNo: parah.ParahNo });
+    }
+
+    //for (var j = 0; j < psdata.length; j++) {
+    //    if (parahs.length == 0) {
+    //        parahs.push({ Parah: psdata[j].Parah, ParahNo: psdata[j].ParahNo });
+    //        continue;
+    //    }
+
+    //    for (var i = 0; i < parahs.length; i++) {
+
+    //        if (parahs[i].Parah == psdata[j].Parah) {
+    //            break;
+    //        }
+    //        else {
+    //            parahs.push({ Parah: psdata[j].Parah, ParahNo: psdata[j].ParahNo });
+    //            break;
+    //        }
+    //    }
+    //}
+
+    var ddlParah = document.getElementById("ddlParah");  
+
+    ddlParah.innerHTML = "";
+    for (var i = 0; i < parahs.length; i++) {
+
+        var el = document.createElement("option");
+        el.value = parahs[i].ParahNo;
+        el.textContent = parahs[i].Parah;
+
+        ddlParah.appendChild(el);
+    }
+
+
+}
 
 function Init_SideBar() {
     var sides = ["left"];
@@ -606,15 +658,6 @@ function CreateQTree() {
     createTree(Tree, targetx, 1, 7);
 }
 
-//$(window).click(function () {
-//    $(".sidebar.left").trigger("sidebar:toggle");
-//    return false;
-//});
-
-//$('#sidebar').click(function (event) {
-//    event.stopPropagation();
-//})
-
 function ShowSearchBar(obj) {
     var $this = $(obj);
     var action = $this.attr("data-action");
@@ -623,9 +666,7 @@ function ShowSearchBar(obj) {
     return false;
 }
 
-
 $(function () {
-
     $("#slider").slider({
         change: function (event, ui) {
             //console.log(ui.value);
