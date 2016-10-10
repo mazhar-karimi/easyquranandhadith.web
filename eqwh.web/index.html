@@ -16,28 +16,6 @@
     <script src="Scripts/eqwh.js"></script>
 </head>
 <body>
-    <div class="sidebars">
-
-        <div class="container-flow sidebar left" id="sidebar">
-            <div class="row">تلاش</div>
-            <div class="row">
-                <div class="col-lg-3">
-                    <span style="z-index:4" class="glyphicon glyphicon-calendar"></span>
-                </div>
-                <div class="col-lg-6">
-                    <input type="text" style="width:120px" id="tb_quran_Search1" value="القرآن" />
-
-                </div>
-                <div class="col-lg-3">
-                    <span onclick="tb_quran_Search1();" style="z-index:4" class="glyphicon glyphicon-search"></span>
-                </div>
-
-            </div>
-
-        </div>
-      
-    </div>
-    <!--data-spy="scroll" data-target=".navbar" data-offset="50"-->
     <div class="container" id="q_mdiv">
         <div class="row">
             <div class="col-lg-3" style="font-size: 28px;font-weight: bold;color: green;">
@@ -115,37 +93,7 @@
                             <div class="row" style="margin-left:0px">
                                 <div class="col-lg-2">پارہ</div>
                                 <div class="col-lg-8">
-                                    <select id="ddlParah" style="min-width:200px">
-                                        <option value="1">الم </option>
-                                        <option value="2">سیقول </option>
-                                        <option value="3">تلک الرسل </option>
-                                        <option value="4">لن تنالوالبر</option>
-                                        <option value="5">والمحصنت</option>
-                                        <option value="6">لایحب اللہ </option>
-                                        <option value="7">واذاسمعوا</option>
-                                        <option value="8">ولواننا</option>
-                                        <option value="9">قال الملاء</option>
-                                        <option value="10">واعلموا</option>
-                                        <option value="11">یعتذرون </option>
-                                        <option value="12">ومامن دآبۃ</option>
-                                        <option value="13">وماابرئ</option>
-                                        <option value="14">ربما</option>
-                                        <option value="15">سبحن الذی </option>
-                                        <option value="16">قال الم </option>
-                                        <option value="17">اقترب للناس</option>
-                                        <option value="18">قد افلح</option>
-                                        <option value="19">وقال الذین </option>
-                                        <option value="20">امن خلق</option>
-                                        <option value="21">اتل مااوحی</option>
-                                        <option value="22">ومن یقنت </option>
-                                        <option value="23">ومالی </option>
-                                        <option value="24">فمن اظلم </option>
-                                        <option value="25">الیہ یرد</option>
-                                        <option value="26">حم </option>
-                                        <option value="27">قال فماخطبکم </option>
-                                        <option value="28">قدسمع اللہ </option>
-                                        <option value="29">تبارک الذی </option>
-                                        <option value="30">عم یتسآءلون </option>
+                                    <select id="ddlParah" style="min-width:200px"> 
                                     </select>
                                 </div>
                                 <div id="nav_parah" class="col-lg-2 text-right table-bordered"></div>
@@ -153,121 +101,7 @@
                             <div class="row" style="margin-left:0px">
                                 <div class="col-lg-2">سورہ</div>
                                 <div class="col-lg-8">
-                                    <select id="ddlSurah" style="min-width:200px">
-                                        <option value="1"> الفاتحة</option>
-                                        <option value="2">البقرة</option>
-                                        <option value="3">آل عمران</option>
-                                        <option value="4">النسآء</option>
-                                        <option value="5">المآئدہ</option>
-                                        <option value="6">الانعام</option>
-                                        <option value="7">الاعراف</option>
-                                        <option value="8">الانفال</option>
-                                        <option value="9">التوبہ</option>
-                                        <option value="10">یونس</option>
-                                        <option value="11">ھود</option>
-                                        <option value="12">یوسف</option>
-                                        <option value="13">الرعد</option>
-                                        <option value="14">ابراھیم</option>
-                                        <option value="15">الحجر</option>
-                                        <option value="16">النحل</option>
-                                        <option value="17">الإسراء</option>
-                                        <option value="18">الكهف</option>
-                                        <option value="19">مريم</option>
-                                        <option value="20">طه</option>
-                                        <option value="21">الأنبياء</option>
-                                        <option value="22">الحج</option>
-                                        <option value="23">المؤمنون</option>
-                                        <option value="24">النور</option>
-                                        <option value="25">الفرقان</option>
-                                        <option value="26">الشعراء</option>
-                                        <option value="27">النمل</option>
-                                        <option value="28">القصص</option>
-                                        <option value="29">العنكبوت</option>
-                                        <option value="30">الروم</option>
-                                        <option value="31">لقمان</option>
-                                        <option value="32">السجدة</option>
-                                        <option value="33">الأحزاب</option>
-                                        <option value="34">سبأ</option>
-                                        <option value="35">فاطر</option>
-                                        <option value="36">يس</option>
-                                        <option value="37">الصافات</option>
-                                        <option value="38">ص</option>
-                                        <option value="39">الزمر</option>
-                                        <option value="40">غافر</option>
-                                        <option value="41">فصلت</option>
-                                        <option value="42">الشورى</option>
-                                        <option value="43">الزخرف</option>
-                                        <option value="44">الدخان</option>
-                                        <option value="45">الجاثية</option>
-                                        <option value="46">الأحقاف</option>
-                                        <option value="47">محمد</option>
-                                        <option value="48">الفتح</option>
-                                        <option value="49">الحجرات</option>
-                                        <option value="50">ق</option>
-                                        <option value="51">الذاريات</option>
-                                        <option value="52">الطور</option>
-                                        <option value="53">النجم</option>
-                                        <option value="54">القمر</option>
-                                        <option value="55">الرحمن</option>
-                                        <option value="56">الواقعة</option>
-                                        <option value="57">الحديد</option>
-                                        <option value="58">المجادلة</option>
-                                        <option value="59">الحشر</option>
-                                        <option value="60">الممتحنة</option>
-                                        <option value="61">الصف</option>
-                                        <option value="62">الجمعة</option>
-                                        <option value="63">المنافقون</option>
-                                        <option value="64">التغابن</option>
-                                        <option value="65">الطلاق</option>
-                                        <option value="66">التحريم</option>
-                                        <option value="67">الملك</option>
-                                        <option value="68">القلم</option>
-                                        <option value="69">الحاقة</option>
-                                        <option value="70">المعارج</option>
-                                        <option value="71">نوح</option>
-                                        <option value="72">الجن</option>
-                                        <option value="73">المزمل</option>
-                                        <option value="74">المدثر</option>
-                                        <option value="75">القيامة</option>
-                                        <option value="76">الإنسان</option>
-                                        <option value="77">المرسلات</option>
-                                        <option value="78">النبأ</option>
-                                        <option value="79">النازعات</option>
-                                        <option value="80">عبس</option>
-                                        <option value="81">التكوير</option>
-                                        <option value="82">الإنفطار</option>
-                                        <option value="83">المطففين</option>
-                                        <option value="84">الانشقاق</option>
-                                        <option value="85">البروج</option>
-                                        <option value="86">الطارق</option>
-                                        <option value="87">الأعلى</option>
-                                        <option value="88">الغاشية</option>
-                                        <option value="89">الفجر</option>
-                                        <option value="90">البلد</option>
-                                        <option value="91">الشمس</option>
-                                        <option value="92">الليل</option>
-                                        <option value="93">الضحى</option>
-                                        <option value="94">الشرح</option>
-                                        <option value="95">التين</option>
-                                        <option value="96">العلق</option>
-                                        <option value="97">القدر</option>
-                                        <option value="98">البينة</option>
-                                        <option value="99">الزلزلة</option>
-                                        <option value="100">العاديات</option>
-                                        <option value="101">القارعة</option>
-                                        <option value="102">التکاثر</option>
-                                        <option value="103">العصر</option>
-                                        <option value="104">الهمزة </option>
-                                        <option value="105">الفیل</option>
-                                        <option value="106">قریش</option>
-                                        <option value="107">الماعون </option>
-                                        <option value="108">الكوثر</option>
-                                        <option value="109">الكافرون</option>
-                                        <option value="110">النصر</option>
-                                        <option value="111">الہب</option>
-                                        <option value="112">الاخلاص</option>
-                                        <option value="113">الفلق</option>
-                                        <option value="114">الناس</option>
+                                    <select id="ddlSurah" style="min-width:200px"> 
                                     </select>
                                 </div>
                                 <div id="nav_surah" class="col-lg-2 text-right table-bordered"></div>
@@ -1481,6 +1315,22 @@
             </div>
         </div>
     </div>
+    <div class="sidebars">
+        <div class="container-flow sidebar left" id="sidebar">
+            <div class="row">تلاش</div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <span style="z-index:4" class="glyphicon glyphicon-calendar"></span>
+                </div>
+                <div class="col-lg-6">
+                    <input type="text" style="width:120px" id="tb_quran_Search1" value="القرآن" />
 
+                </div>
+                <div class="col-lg-3">
+                    <span onclick="tb_quran_Search1();" style="z-index:4" class="glyphicon glyphicon-search"></span>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
