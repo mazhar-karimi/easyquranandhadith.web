@@ -101,7 +101,7 @@ function lastSibling(node, parentNode) {
 }
 // Adds a new node to the tree
 function addNode(parentNode, recursedNodes, targ) {
-
+    ab: 
     for (var i = 0; i < nodes.length; i++) {
 
         var nodeValues = nodes[i].split("|");
@@ -113,8 +113,15 @@ function addNode(parentNode, recursedNodes, targ) {
 
             // Write out line & empty icons
             for (g = 0; g < recursedNodes.length; g++) {
-                if (recursedNodes[g] == 1)
-                    target += '<img src="img/line.gif" align="absbottom" alt="" />';
+                if (recursedNodes[g] == 1) {
+                    try {
+                        target += '<img src="img/line.gif" align="absbottom" alt="" />';
+                    } catch (e) {
+                        console.log(target);
+                        break ab;
+                    }
+                    
+                }
                 else
                     target += '<img src="img/empty.gif" align="absbottom" alt="" />';
             }

@@ -9,12 +9,12 @@
     xhr.onload = function () {
         if (xhr.response && xhr.responseText != null) {
             var quran_search_json = JSON.parse(xhr.response);
-            var targetx = document.getElementById("quran_search_tree");
+            var targetY = document.getElementById("quran_search_tree");
             var search_tree = new Array;
             search_tree[0] = "1|0|نتيجة|return false;";
 
-
-            for (var i = 0; i < quran_search_json.length ; i++)
+            //quran_search_json.length
+            for (var i = 1; i < quran_search_json.length ; i++)
             {
                 var surah = getpsr(quran_search_json[i]);
 
@@ -23,7 +23,7 @@
                 search_tree[i] = (i + 1) + "|" + 1 + "|" + surahName.Surah   + "|" + "GetAyah(" + quran_search_json[i] + ")";
             }
 
-            createTree(search_tree, targetx, 1, 0);
+            createTree(search_tree, targetY, 1, 0);
 
             //var search = ['div', 'span'];
 
