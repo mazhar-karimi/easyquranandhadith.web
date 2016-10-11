@@ -9,7 +9,7 @@
 
     <link rel="StyleSheet" href="Content/tree.css" type="text/css">
     <script type="text/javascript" src="Scripts/tree.js"></script>
-    <script src="Scripts/jquery.sidebar.js"></script>
+    <script src="Scripts/jquery.sidebar.min.js"></script>
     <link href="Content/css/site.css" rel="stylesheet" />
     <script src="Scripts/ParahSurahRukh.js"></script>
 
@@ -1320,15 +1320,17 @@
             <div class="row">تلاش</div>
             <div class="row">
                 <div class="col-lg-3">
-                    <span style="z-index:4" class="glyphicon glyphicon-calendar"></span>
+                    <span style="z-index:4" onclick="toggle_keyboard()" class="glyphicon glyphicon-calendar"></span>
                 </div>
                 <div class="col-lg-6">
-                    <input type="text" style="width:120px" id="tb_quran_Search1" value="القرآن" />
+                    <input type="text" style="width:120px" id="tb_quran_Search1" value="" />
 
                 </div>
                 <div class="col-lg-3">
                     <span onclick="tb_quran_Search1();" style="z-index:4" class="glyphicon glyphicon-search"></span>
                 </div>
+            </div>
+            <div class="row" id="keyboard" style="display: none">
             </div>
         </div>
     </div>
