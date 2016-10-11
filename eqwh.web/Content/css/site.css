@@ -1,5 +1,27 @@
 ﻿
- 
+    .kb_down
+        {
+            border: 0.5px solid red;
+            border-radius: 1.5px;
+            background: linear-gradient(white, red);                       
+            padding-right:12px;
+            padding-left: 12px;
+            font-size:32px;
+            font-family: 'Alvi Nastaleeq';
+            color:black;
+        }
+         
+        .kb
+        {
+            border: 0.5px solid gray;
+            border-radius: 1.5px;
+            background: linear-gradient(white, lightgray);                       
+            padding-right:12px;
+            padding-left: 12px;
+            font-size:32px;
+            font-family: 'Alvi Nastaleeq';
+            color:black;
+        }
 
 .sidebar.left {
     top: 0;
