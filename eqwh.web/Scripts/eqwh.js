@@ -549,7 +549,9 @@ $(document).ready(function () {
         ddl_Surah();
     }, 10);
 
-   // ddl_Surah();
+    // ddl_Surah();
+
+    draw_kb();
 });
 
 function ddl_Surah() {
@@ -693,4 +695,48 @@ function opentab(evt, tabid, tabclassname, tablinks) {
     $("." + tablinks).removeClass("active");
     document.getElementById(tabid).style.display = "block";
     $(tablinks).addClass("active");
+}
+
+function pc_down(k) {
+    k.classList.remove('kb');
+    k.classList.add('kb_down');
+
+}
+function pc_up(k) {
+
+    k.classList.remove('kb_down');
+    k.classList.add('kb');
+}
+function pc(k) {
+    var cod = k.innerHTML;
+    var txt = document.getElementById('tb_quran_Search1');
+    txt.focus();
+    txt.value += cod;
+
+}
+
+function draw_kb() {
+
+    var kbdiv = document.getElementById('keyboard');
+    var output = "";
+    var start = 1575;
+
+    for (var i = start; i < start + 35; i++) {
+        if (i >= 1595 && i <= 1600)
+            continue;
+
+        if (i == 1604)
+            output += ' <span class="kb" onmousedown="pc_down(this)" onmouseup="pc_up(this)" onclick="pc(this)">&#' + 1711 + '</span>';
+
+        output += ' <span class="kb" onmousedown="pc_down(this)" onmouseup="pc_up(this)"  onclick="pc(this)">&#' + i + '</span>';
+    }
+
+    output += ' <span width="400px" class="kb" onmousedown="pc_down(this)" onmouseup="pc_up(this)"  onclick="pc(this)">&#32</span>';
+
+
+    kbdiv.innerHTML = output;
+}
+
+function toggle_keyboard() {
+    $("#keyboard").toggle();
 }
