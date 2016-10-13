@@ -110,6 +110,7 @@ function GetAyah(ayahno) {
             $('#TarjumaMafhoomUlQuran-body').text(json.TarjumaMafhoomUlQuran);
             $('#TarjumaRohulQuran-body').text(json.TarjumaRohulQuran);
             $('#TarjumaMadni-body').text(json.TarjumaMadni);
+            $('#TarjumaMadni2-body').text(json.TarjumaMadni);
             $('#TarjumaAnwarulbayan-body').text(json.TarjumaAnwarulbayan);
             $('#TarjumaAsanQuran-body').text(json.TarjumaAsanQuran);
             $('#TarjumaBayanUlQuranDrIsrar-body').text(json.TarjumaBayanUlQuranDrIsrar);
@@ -120,8 +121,10 @@ function GetAyah(ayahno) {
             $('#TarjumaTaiseerurRehman-body').text(json.TarjumaTaiseerurRehman);
             $('#TarjumaImdadulKaram-body').text(json.TarjumaImdadulKaram);
             $('#TarjumaZakhiratulJinan-body').text(json.TarjumaZakhiratulJinan);
+            $('#TarjumaZakhiratulJinan2-body').text(json.TarjumaZakhiratulJinan);
             $('#TarjumaDawateQuran-body').text(json.TarjumaDawateQuran);
             $('#TarjumaTayseerulquran-body').text(json.TarjumaTayseerulquran);
+            $('#TarjumaTayseerulquran2-body').text(json.TarjumaTayseerulquran);
             $('#TarjumaTibyanulQuran-body').text(json.TarjumaTibyanulQuran);
             $('#TarjumaMakkah-body').text(json.TarjumaMakkah);
             $('#TarjumaUrwatUlWasqa-body').text(json.TarjumaUrwatUlWasqa);
@@ -183,33 +186,43 @@ function GetAyah(ayahno) {
             $('#AsbabeNazool2-body').text(json.AsbabeNazool);
 
             $('#TafseerMarifulFurqan-body').text(json.TafseerMarifulFurqan);
-            $('#TarjumaRohulQuran-body').text(json.TarjumaRohulQuran);
+           // $('#TarjumaRohulQuran-body').text(json.TarjumaRohulQuran);
+            $('#TarjumaRohulQuran2-body').text(json.TarjumaRohulQuran);
             $('#TafseerRohulQuran-body').text(json.TafseerRohulQuran);
             $('#TarjumaMadni-body').text(json.TarjumaMadni);
             $('#TafseerMadni-body').text(json.TafseerMadni);
             $('#TafseerMadniKabeer-body').text(json.TafseerMadniKabeer);
             $('#TarjumaMafhoomUlQuran-body').text(json.TarjumaMafhoomUlQuran);
+            $('#TarjumaMafhoomUlQuran2-body').text(json.TarjumaMafhoomUlQuran);
             $('#TafseerMafhoomUlQuran-body').text(json.TafseerMafhoomUlQuran);
             $('#KhulasaMazameenQuran-body').text(json.KhulasaMazameenQuran);
             $('#TarjumaBotvi-body').text(json.TarjumaBotvi);
+            $('#TarjumaBotvi2-body').text(json.TarjumaBotvi);
             $('#TafseerUlQuranKarim-body').text(json.TafseerUlQuranKarim);
             $('#TafseerDawatulQuran-body').text(json.TafseerDawatulQuran);
             $('#TarjumaAnwarulbayan-body').text(json.TarjumaAnwarulbayan);
+            $('#TarjumaAnwarulbayan2-body').text(json.TarjumaAnwarulbayan);
             $('#TafseerAnwarUlBayan-body').text(json.TafseerAnwarUlBayan);
             $('#TarjumaAsanQuran-body').text(json.TarjumaAsanQuran);
+            $('#TarjumaAsanQuran2-body').text(json.TarjumaAsanQuran);
             $('#TafseerAsanQuran-body').text(json.TafseerAsanQuran);
             $('#TarjumaBayanUlQuranDrIsrar-body').text(json.TarjumaBayanUlQuranDrIsrar);
+            $('#TarjumaBayanUlQuranDrIsrar2-body').text(json.TarjumaBayanUlQuranDrIsrar);
             $('#TafseerBayanUlQuranDrIsrar-body').text(json.TafseerBayanUlQuranDrIsrar);
             $('#TarjumaAlkitab-body').text(json.TarjumaAlkitab);
+            $('#TarjumaAlkitab2-body').text(json.TarjumaAlkitab);
             $('#TafseerAlkitab-body').text(json.TafseerAlkitab);
             $('#TarjumaFawaidUlQuran-body').text(json.TarjumaFawaidUlQuran);
+            $('#TarjumaFawaidUlQuran2-body').text(json.TarjumaFawaidUlQuran);
             $('#TafseerFawaidUlQuran-body').text(json.TafseerFawaidUlQuran);
             $('#TarjumaFahmulQuran-body').text(json.TarjumaFahmulQuran);
             $('#TafseerFahmulQuran-body').text(json.TafseerFahmulQuran);
             $('#MukhtasarTafseerAteeq-body').text(json.MukhtasarTafseerAteeq);
             $('#TarjumaTaiseerurRehman-body').text(json.TarjumaTaiseerurRehman);
+            $('#TarjumaTaiseerurRehman2-body').text(json.TarjumaTaiseerurRehman);
             $('#TafseerTaiseerurRehman-body').text(json.TafseerTaiseerurRehman);
             $('#TarjumaImdadulKaram-body').text(json.TarjumaImdadulKaram);
+            $('#TarjumaImdadulKaram2-body').text(json.TarjumaImdadulKaram);
             $('#TafseerImdadulKaram-body').text(json.TafseerImdadulKaram);
 
             $('#TarjumaZakhiratulJinan-body').text(json.TarjumaZakhiratulJinan);
@@ -217,13 +230,18 @@ function GetAyah(ayahno) {
             $('#TarjumaTayseerulquran-body').text(json.TarjumaTayseerulquran);
             $('#TafseerTayseerulquran-body').text(json.TafseerTayseerulquran);
             $('#TarjumaDawateQuran-body').text(json.TarjumaDawateQuran);
+            $('#TarjumaDawateQuran2-body').text(json.TarjumaDawateQuran);
             $('#TafseerDawateQuran-body').text(json.TafseerDawateQuran);
             $('#TarjumaTibyanulQuran-body').text(json.TarjumaTibyanulQuran);
+            $('#TarjumaTibyanulQuran2-body').text(json.TarjumaTibyanulQuran);
             $('#TafseerTibyanulQuran-body').text(json.TafseerTibyanulQuran);
             $('#TarjumaUrwatUlWasqa-body').text(json.TarjumaUrwatUlWasqa);
+            $('#TarjumaUrwatUlWasqa2-body').text(json.TarjumaUrwatUlWasqa);
             $('#TafseerUrwatUlWasqa-body').text(json.TafseerUrwatUlWasqa);
-            $('#TarjumaBayanUlQuran-body').text(json.TarjumaBayanUlQuran);
+            
+            $('#TarjumaBayanUlQuran3-body').text(json.TarjumaBayanUlQuran);
             $('#TarjumaMakkah-body').text(json.TarjumaMakkah);
+            $('#TarjumaMakkah2-body').text(json.TarjumaMakkah);
             $('#TafseerMakkah-body').text(json.TafseerMakkah);
             $('#TafseerAlManar-body').text(json.TafseerAlManar);
             $('#TafseerAnwarUlQuran-body').text(json.TafseerAnwarUlQuran);
@@ -231,62 +249,64 @@ function GetAyah(ayahno) {
             $('#TafseerAlBayan_Ghamdi-body').text(json.TafseerAlBayan_Ghamdi);
             $('#TarjumaAlManar-body').text(json.TarjumaAlManar);
             $('#TarjumaAhsanUlBayan-body').text(json.TarjumaAhsanUlBayan);
+            $('#TarjumaAhsanUlBayan2-body').text(json.TarjumaAhsanUlBayan);
             $('#TafseerAhsanUlBayan-body').text(json.TafseerAhsanUlBayan);
             $('#TarjumaAsrarulTanzeel-body').text(json.TarjumaAsrarulTanzeel);
+            $('#TarjumaAsrarulTanzeel2-body').text(json.TarjumaAsrarulTanzeel);
             $('#TafseerAsrarulTanzeel-body').text(json.TafseerAsrarulTanzeel);
             $('#TafseerNikatulQuran-body').text(json.TafseerNikatulQuran);
 
 
 
-            $('#TarjumaMalimulIrfaan-body').text(json.TarjumaMalimulIrfaan);
+            $('#TarjumaMalimulIrfaan2-body').text(json.TarjumaMalimulIrfaan);
             $('#TafseerMalimulIrfaan-body').text(json.TafseerMalimulIrfaan);
-            $('#TarjumaWahiduddinKhan-body').text(json.TarjumaWahiduddinKhan);
+            $('#TarjumaWahiduddinKhan2-body').text(json.TarjumaWahiduddinKhan);
             $('#TafseerTazkirulQuran-body').text(json.TafseerTazkirulQuran);
-            $('#TarjumaTadubbureQuran-body').text(json.TarjumaTadubbureQuran);
+            $('#TarjumaTadubbureQuran2-body').text(json.TarjumaTadubbureQuran);
             $('#TafseerTadubbureQuran-body').text(json.TafseerTadubbureQuran);
-            $('#TarjumaBaseerateQuran-body').text(json.TarjumaBaseerateQuran);
+            $('#TarjumaBaseerateQuran2-body').text(json.TarjumaBaseerateQuran);
             $('#TafseerBaseerateQuran-body').text(json.TafseerBaseerateQuran);
-            $('#TarjumaMajdi-body').text(json.TarjumaMajdi);
+            $('#TarjumaMajdi2-body').text(json.TarjumaMajdi);
             $('#TafseerMajdi-body').text(json.TafseerMajdi);
             $('#TarjumaJawahirulQuran-body').text(json.TarjumaJawahirulQuran);
             $('#TafseerJawahirulQuran-body').text(json.TafseerJawahirulQuran);
 
-            $('#TarjumaSirajUlBayan-body').text(json.TarjumaSirajUlBayan);
+            $('#TarjumaSirajUlBayan2-body').text(json.TarjumaSirajUlBayan);
             $('#TafseerSirajUlBayan-body').text(json.TafseerSirajUlBayan);
-            $('#TarjumaAhmadAliLahore-body').text(json.TarjumaAhmadAliLahore);
+            $('#TarjumaAhmadAliLahore2-body').text(json.TarjumaAhmadAliLahore);
             $('#TafseerMehmood-body').text(json.TafseerMehmood);
             $('#TafseerMarifUlQuran-body').text(json.TafseerMarifUlQuran);
-            $('#TarjumaHaqqani-body').text(json.TarjumaHaqqani);
+            $('#TarjumaHaqqani2-body').text(json.TarjumaHaqqani);
             $('#TafseerHaqqani-body').text(json.TafseerHaqqani);
             $('#TafseerFuyoozUlQuran-body').text(json.TafseerFuyoozUlQuran);
             $('#TafseerFizilalulQuran-body').text(json.TafseerFizilalulQuran);
-            $('#TarjumaShahAbdulQadir-body').text(json.TarjumaShahAbdulQadir);
+            $('#TarjumaShahAbdulQadir2-body').text(json.TarjumaShahAbdulQadir);
             $('#TafseerMarifUlQuran_Idrees-body').text(json.TafseerMarifUlQuran_Idrees);
 
 
 
-            $('#TarjumaKashafuRehman-body').text(json.TarjumaKashafuRehman);
+            $('#TarjumaKashafuRehman2-body').text(json.TarjumaKashafuRehman);
             $('#TafseerKashafuRehman-body').text(json.TafseerKashafuRehman);
-            $('#TarjumaAlHasnat-body').text(json.TarjumaAlHasnat);
+            $('#TarjumaAlHasnat2-body').text(json.TarjumaAlHasnat);
             $('#TafseerAlHasnat-body').text(json.TafseerAlHasnat);
-            $('#TarjumaAshrafi-body').text(json.TarjumaAshrafi);
+            $('#TarjumaAshrafi2-body').text(json.TarjumaAshrafi);
             $('#TafseerAshrafi-body').text(json.TafseerAshrafi);
-            $('#TarjumaNoorulIrfan-body').text(json.TarjumaNoorulIrfan);
+            $('#TarjumaNoorulIrfan2-body').text(json.TarjumaNoorulIrfan);
             $('#TafseerNoorulIrfan-body').text(json.TafseerNoorulIrfan);
             $('#TarjumaMazharulQuran-body').text(json.TarjumaMazharulQuran);
             $('#TafseerMazharulQuran-body').text(json.TafseerMazharulQuran);
-            $('#TarjumaMudoodi-body').text(json.TarjumaMudoodi);
+            $('#TarjumaMudoodi2-body').text(json.TarjumaMudoodi);
             $('#TafseerMudoodi-body').text(json.TafseerMudoodi);
             $('#TafseerAlSaadi-body').text(json.TafseerAlSaadi);
-            $('#TarjumaKanzulIman-body').text(json.TarjumaKanzulIman);
+            $('#TarjumaKanzulIman2-body').text(json.TarjumaKanzulIman);
             $('#TafseerKhazainUlIrfan-body').text(json.TafseerKhazainUlIrfan);
-            $('#TarjumaTasheelulQuran-body').text(json.TarjumaTasheelulQuran);
+            $('#TarjumaTasheelulQuran2-body').text(json.TarjumaTasheelulQuran);
             $('#TafseerTasheelulQuran-body').text(json.TafseerTasheelulQuran);
-            $('#TarjumaUsmani-body').text(json.TarjumaUsmani);
+            $('#TarjumaUsmani2-body').text(json.TarjumaUsmani);
             $('#TafseerUsmani-body').text(json.TafseerUsmani);
             $('#TarjumaBayanUlQuran-body').text(json.TarjumaBayanUlQuran);
             $('#TafseerBayanUlQuran-body').text(json.TafseerBayanUlQuran);
-            $('#TarjumaTarjumanUlQuran-body').text(json.TarjumaTarjumanUlQuran);
+            $('#TarjumaTarjumanUlQuran2-body').text(json.TarjumaTarjumanUlQuran);
             $('#TafseerTarjumanUlQuran-body').text(json.TafseerTarjumanUlQuran);
             $('#TafseerAhsanUlTafaseer-body').text(json.TafseerAhsanUlTafaseer);
             $('#TafseerSanai-body').text(json.TafseerSanai);
@@ -664,7 +684,7 @@ function ShowSearchBar(obj) {
     var $this = $(obj);
     var action = $this.attr("data-action");
     var side = $this.attr("data-side");
-    $(".sidebar." + side).trigger("sidebar:toggle");
+    $(".sidebar." + side).trigger("sidebar:toggle");    
     return false;
 }
 
