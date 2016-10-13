@@ -18,15 +18,29 @@ namespace eqwh.web.DataReaders
             foreach (var item in fields)
             {
                 var s = LuceneDB.Get.GetContent(ayahno, item.Key);
-                r.GetType().GetProperty(item.Key).SetValue(r, Convert.ChangeType(s,
-                    r.GetType().GetProperty(item.Key).PropertyType));
+
+                if (System.Diagnostics.Debugger.IsAttached)
+                {
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        System.Diagnostics.Debug.WriteLine("Field {0} Emtpy, Ayat {1}", item.Key, ayahno);
+                        s = "NO DATA AVAILABLE";
+                    }
+                }
+
+
+                r.GetType().GetProperty(item.Key).SetValue(r,
+                    Convert.ChangeType(s, r.GetType().GetProperty(item.Key).PropertyType)
+                    );
+
+                
             }
 
             return r;
         }
         public int[] SearchAyat(string word)
         {
-             var fields = LuceneDB.Get.FieldInfo.Keys.ToArray().Take(12).ToArray();
+            var fields = LuceneDB.Get.FieldInfo.Keys.ToArray().Take(12).ToArray();
 
             // var field_arr = String.Join(",", fields);
 
@@ -38,9 +52,9 @@ namespace eqwh.web.DataReaders
             ////        field_arr += fields[i] ;
 
             ////}
-             var ay_arr= LuceneDB.Get.Search(word, fields);
+            var ay_arr = LuceneDB.Get.Search(word, fields);
 
-             return ay_arr;
+            return ay_arr;
         }
         //public static void SetValueFromString(this object target, string propertyName, string propertyValue)
         //{
