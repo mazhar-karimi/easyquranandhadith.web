@@ -310,17 +310,17 @@ function GetAyah(ayahno) {
             $('#TafseerTarjumanUlQuran-body').text(json.TafseerTarjumanUlQuran);
             $('#TafseerAhsanUlTafaseer-body').text(json.TafseerAhsanUlTafaseer);
             $('#TafseerSanai-body').text(json.TafseerSanai);
-            $('#TarjumaMozihulQuran-body').text(json.TarjumaMozihulQuran);
+            $('#TarjumaMozihulQuran2-body').text(json.TarjumaMozihulQuran);
             $('#TafseerMozihulQuran-body').text(json.TafseerMozihulQuran);
             $('#TafseerMazhari-body').text(json.TafseerMazhari);
             $('#TafseerAshrafulHawashi-body').text(json.TafseerAshrafulHawashi);
             $('#TafseeratAhmadia-body').text(json.TafseeratAhmadia);
-            $('#TarjumaDureeMansoor-body').text(json.TarjumaDureeMansoor);
+            $('#TarjumaDureeMansoor2-body').text(json.TarjumaDureeMansoor);
             $('#TafseerDureeMansoor-body').text(json.TafseerDureeMansoor);
             $('#TafseerIbnAbbas-body').text(json.TafseerIbnAbbas);
-            $('#TarjumaFatehMuhammad-body').text(json.TarjumaFatehMuhammad);
+            $('#TarjumaFatehMuhammad2-body').text(json.TarjumaFatehMuhammad);
             $('#TafseerIbnKaseer-body').text(json.TafseerIbnKaseer);
-            $('#TarjumaAnwarulbayan-body').text(json.TarjumaAnwarulbayan);
+            $('#TarjumaAnwarulbayan2-body').text(json.TarjumaAnwarulbayan);
             $('#TafseerMadarikalTanzeel-body').text(json.TafseerMadarikalTanzeel);
             $('#TafseerQurtabi-body').text(json.TafseerQurtabi);
             $('#TafseerBaghvi-body').text(json.TafseerBaghvi);
@@ -338,6 +338,16 @@ function GetAyah(ayahno) {
             $('#TafseerFaslulkhitab_AT-body').text(json.TafseerFaslulkhitab_AT);
             $('#TafseerFaizanulRehman_AT-body').text(json.TafseerFaizanulRehman_AT);
             $('#TafseerNamoona_AT-body').text(json.TafseerNamoona_AT);
+
+            var sbox = $('#tb_quran_Search1').val();
+
+            if (sbox != '')
+            {
+                $('.tarjuma-body').each(function (i, o) {
+                    o.innerHTML = o.innerHTML.replace(sbox, '<mark>' + sbox + '</mark>');
+                });
+            }
+
             //$('#-body').text(json.);
         }
     };
@@ -640,6 +650,7 @@ function ddl_Parah() {
 
 function Init_SideBar() {
     var sides = ["left"];
+    $(".sidebars").show();
     //$("h1 span.version").text($.fn.sidebar.version);
 
     // Initialize sidebars
@@ -661,7 +672,7 @@ function CreateQTree() {
         var parah = linq(psdata).first({ ParahNo: i });
         var parahnodeno = nodeno;
 
-        Tree[x] = nodeno + "|" + 1 + "|" + parah.Parah + "|gotoayat(" + parah.parah_ayatid + ")";
+        Tree[x] = nodeno + "|" + 1 + "|" + parah.Parah + "|GetAyah(" + parah.parah_ayatid + ")";
 
         var surahs = linq(psdata).where({ ParahNo: i }).tolist();
 
@@ -671,7 +682,7 @@ function CreateQTree() {
 
             var item = surahs[j];
 
-            Tree[x] = nodeno + "|" + parahnodeno + "|" + item.Surah + "|gotoayat(" + item.surah_ayatid + ")";
+            Tree[x] = nodeno + "|" + parahnodeno + "|" + item.Surah + "|GetAyah(" + item.surah_ayatid + ")";
         }
         nodeno++;
         x++;
@@ -692,10 +703,13 @@ $(function () {
     $("#slider").slider({
         change: function (event, ui) {
             //console.log(ui.value);
+            $('.tarjuma-body').each(function (i, o) {               
+                $(o).css('font-size', ui.value);
+            });
         },
         min: 10,
-        max: 100,
-        value: 55
+        max: 48,
+        value: 20
     });
 });
 
