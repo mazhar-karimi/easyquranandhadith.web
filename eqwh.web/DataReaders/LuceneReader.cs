@@ -85,5 +85,11 @@ namespace eqwh.web.DataReaders
         {
             return LuceneDB.Get.GetContent(ayahno, colname);
         }
+
+
+        public Ahadith GetHadith(int hadithno)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
