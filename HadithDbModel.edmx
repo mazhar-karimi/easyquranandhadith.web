@@ -1,0 +1,1007 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EQ_Hadith_6Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.ACDR' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ACDR">
+          <Key>
+            <PropertyRef Name="Review" />
+          </Key>
+          <Property Name="Hadith1" Type="int" />
+          <Property Name="Ahadith_Book" Type="tinyint" />
+          <Property Name="Ahadith_ACDNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Hadith2" Type="int" />
+          <Property Name="Ahadith_1_Book" Type="tinyint" />
+          <Property Name="Ahadith_1_ACDNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Review" Type="bit" Nullable="false" />
+          <Property Name="NewHadith1" Type="int" />
+          <Property Name="NewHadith2" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.Ahadith' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Ahadith">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Book" />
+            <PropertyRef Name="Part" />
+            <PropertyRef Name="PartHNo" />
+            <PropertyRef Name="Topic" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ReferenceEvent" Type="int" />
+          <Property Name="Book" Type="tinyint" Nullable="false" />
+          <Property Name="Part" Type="tinyint" Nullable="false" />
+          <Property Name="PartHNo" Type="smallint" Nullable="false" />
+          <Property Name="Topic" Type="int" Nullable="false" />
+          <Property Name="Chapter" Type="nvarchar(max)" />
+          <Property Name="UrduText" Type="nvarchar(max)" />
+          <Property Name="EnglishText" Type="nvarchar(max)" />
+          <Property Name="ArabicText" Type="nvarchar(max)" />
+          <Property Name="ArabicWithoutAraabText" Type="nvarchar(max)" />
+          <Property Name="Takhreej" Type="nvarchar(max)" />
+          <Property Name="Ravi" Type="nvarchar(max)" />
+          <Property Name="ACDNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="HadithRepetitionCounter" Type="int" />
+          <Property Name="MutafiqAlaih" Type="nvarchar" MaxLength="250" />
+          <Property Name="MutafiqAlaihCounter" Type="int" />
+          <Property Name="TashreehReference" Type="int" />
+          <Property Name="ACD" Type="int" />
+          <Property Name="UrduTextColor" Type="nvarchar(max)" />
+          <Property Name="ArabicTextColor" Type="nvarchar(max)" />
+          <Property Name="EnglishTextColor" Type="nvarchar(max)" />
+          <Property Name="BaabUrdu_DS" Type="nvarchar(max)" />
+          <Property Name="HukamAjmali_DS" Type="nvarchar(max)" />
+          <Property Name="Qisam_DS" Type="nvarchar(max)" />
+          <Property Name="Nisbat_DS" Type="nvarchar(max)" />
+          <Property Name="HNo_DS" Type="nvarchar(max)" />
+          <Property Name="ArabicText_DS" Type="nvarchar(max)" />
+          <Property Name="UrduText_DS" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.AhadithLayoutDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AhadithLayoutDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Layout" />
+            <PropertyRef Name="Font" />
+            <PropertyRef Name="FontSize" />
+            <PropertyRef Name="ForeColor" />
+            <PropertyRef Name="BackColor" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Layout" Type="int" Nullable="false" />
+          <Property Name="Column" Type="nvarchar" MaxLength="255" />
+          <Property Name="Font" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="FontSize" Type="int" Nullable="false" />
+          <Property Name="ForeColor" Type="nvarchar" MaxLength="17" Nullable="false" />
+          <Property Name="BackColor" Type="nvarchar" MaxLength="17" Nullable="false" />
+          <Property Name="ReadOnly" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.AhadithLayouts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AhadithLayouts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Caption" Type="nvarchar" MaxLength="255" />
+          <Property Name="Key" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'EQ_Hadith_6.dbo.BookMarks' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="BookMarks">
+          <Property Name="BookMarkName" Type="nvarchar" MaxLength="255" />
+          <Property Name="BookMarkID" Type="smallint" />
+          <Property Name="BMID" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.Books' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Title" />
+          </Key>
+          <Property Name="Id" Type="tinyint" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'EQ_Hadith_6.dbo.HadithKind' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="HadithKind">
+          <Property Name="Hadith" Type="int" />
+          <Property Name="Kind" Type="tinyint" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.HadithKindsACD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="HadithKindsACD">
+          <Key>
+            <PropertyRef Name="Book" />
+            <PropertyRef Name="ACD" />
+            <PropertyRef Name="Kind" />
+          </Key>
+          <Property Name="Book" Type="tinyint" Nullable="false" />
+          <Property Name="ACD" Type="int" Nullable="false" />
+          <Property Name="Kind" Type="tinyint" Nullable="false" />
+          <Property Name="Ravi" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'EQ_Hadith_6.dbo.HadithRepetition' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="HadithRepetition">
+          <Property Name="HadithID" Type="int" />
+          <Property Name="HadithDuplicate" Type="int" />
+          <Property Name="HadithMutafiqAlaih" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.Intro' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Intro">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Category" />
+            <PropertyRef Name="Caption" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Caption" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Intro" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.Kinds' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Kinds">
+          <Key>
+            <PropertyRef Name="Kind" />
+          </Key>
+          <Property Name="Id" Type="tinyint" />
+          <Property Name="Kind" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.Parts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Parts">
+          <Key>
+            <PropertyRef Name="Title" />
+          </Key>
+          <Property Name="Id" Type="tinyint" />
+          <Property Name="Title" Type="nvarchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.Ravi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Ravi">
+          <Key>
+            <PropertyRef Name="Tabqa" />
+          </Key>
+          <Property Name="ID" Type="int" />
+          <Property Name="Tabqa" Type="int" Nullable="false" />
+          <Property Name="Ravi" Type="nvarchar" MaxLength="64" />
+          <Property Name="Kuniat" Type="nvarchar" MaxLength="32" />
+          <Property Name="Nasab" Type="nvarchar" MaxLength="32" />
+          <Property Name="Laqab" Type="nvarchar" MaxLength="32" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.RaviAhadithACD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RaviAhadithACD">
+          <Key>
+            <PropertyRef Name="Ravi" />
+            <PropertyRef Name="ACD" />
+            <PropertyRef Name="Book" />
+          </Key>
+          <Property Name="Ravi" Type="int" Nullable="false" />
+          <Property Name="RaviName" Type="nvarchar" MaxLength="255" />
+          <Property Name="ACD" Type="int" Nullable="false" />
+          <Property Name="Book" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.Repetition' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Repetition">
+          <Key>
+            <PropertyRef Name="Review" />
+          </Key>
+          <Property Name="Hadith1" Type="int" />
+          <Property Name="Hadith2" Type="int" />
+          <Property Name="Review" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'EQ_Hadith_6.dbo.RepetitionOrg' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="RepetitionOrg">
+          <Property Name="Hadith1" Type="int" />
+          <Property Name="Hadith2" Type="int" />
+          <Property Name="CounterTotal" Type="int" />
+          <Property Name="MutafiqAlaih" Type="nvarchar" MaxLength="255" />
+          <Property Name="MutafiqAlaihCounter" Type="int" />
+          <Property Name="ACDNo" Type="nvarchar" MaxLength="255" />
+          <Property Name="15more" Type="nvarchar" MaxLength="50" />
+          <Property Name="TashreehReference" Type="int" />
+          <Property Name="TashreehReference1" Type="int" />
+        </EntityType>-->
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.Tabqa' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Tabqa">
+          <Key>
+            <PropertyRef Name="Tabqa" />
+          </Key>
+          <Property Name="Id" Type="int" />
+          <Property Name="Tabqa" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.Tags' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Hadith" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="Start" />
+            <PropertyRef Name="Length" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Hadith" Type="int" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Start" Type="int" Nullable="false" />
+          <Property Name="Length" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.TagTypes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TagTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="Hyperlink" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="Font" Type="nvarchar" MaxLength="255" />
+          <Property Name="Color" Type="nvarchar" MaxLength="255" />
+          <Property Name="Hyperlink" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.Topics' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Topics">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Topic" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Topic" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.TopicsACD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TopicsACD">
+          <Key>
+            <PropertyRef Name="TopicArabic" />
+          </Key>
+          <Property Name="Id" Type="int" />
+          <Property Name="Topic" Type="nvarchar" MaxLength="255" />
+          <Property Name="Parent" Type="int" />
+          <Property Name="TopicArabic" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.TopicsAhadithACD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TopicsAhadithACD">
+          <Key>
+            <PropertyRef Name="Topic" />
+          </Key>
+          <Property Name="ACD" Type="int" />
+          <Property Name="Topic" Type="int" Nullable="false" />
+          <Property Name="Book" Type="tinyint" />
+          <Property Name="Ravi" Type="nvarchar" MaxLength="34" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EQ_Hadith_6.dbo.UnrepeatedAhadithAcd' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UnrepeatedAhadithAcd">
+          <Key>
+            <PropertyRef Name="Book" />
+            <PropertyRef Name="ACD" />
+          </Key>
+          <Property Name="Book" Type="tinyint" Nullable="false" />
+          <Property Name="ACD" Type="int" Nullable="false" />
+          <Property Name="Ravi" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'EQ_Hadith_6.dbo.Ustad' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Ustad">
+          <Property Name="Ravi" Type="int" />
+          <Property Name="UstadID" Type="int" />
+        </EntityType>-->
+        <EntityContainer Name="EQ_Hadith_6ModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACDR" EntityType="Self.ACDR" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ACDR].[Hadith1] AS [Hadith1], 
+    [ACDR].[Ahadith_Book] AS [Ahadith_Book], 
+    [ACDR].[Ahadith_ACDNo] AS [Ahadith_ACDNo], 
+    [ACDR].[Hadith2] AS [Hadith2], 
+    [ACDR].[Ahadith_1_Book] AS [Ahadith_1_Book], 
+    [ACDR].[Ahadith_1_ACDNo] AS [Ahadith_1_ACDNo], 
+    [ACDR].[Review] AS [Review], 
+    [ACDR].[NewHadith1] AS [NewHadith1], 
+    [ACDR].[NewHadith2] AS [NewHadith2]
+    FROM [dbo].[ACDR] AS [ACDR]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Ahadith" EntityType="Self.Ahadith" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Ahadith].[Id] AS [Id], 
+    [Ahadith].[ReferenceEvent] AS [ReferenceEvent], 
+    [Ahadith].[Book] AS [Book], 
+    [Ahadith].[Part] AS [Part], 
+    [Ahadith].[PartHNo] AS [PartHNo], 
+    [Ahadith].[Topic] AS [Topic], 
+    [Ahadith].[Chapter] AS [Chapter], 
+    [Ahadith].[UrduText] AS [UrduText], 
+    [Ahadith].[EnglishText] AS [EnglishText], 
+    [Ahadith].[ArabicText] AS [ArabicText], 
+    [Ahadith].[ArabicWithoutAraabText] AS [ArabicWithoutAraabText], 
+    [Ahadith].[Takhreej] AS [Takhreej], 
+    [Ahadith].[Ravi] AS [Ravi], 
+    [Ahadith].[ACDNo] AS [ACDNo], 
+    [Ahadith].[HadithRepetitionCounter] AS [HadithRepetitionCounter], 
+    [Ahadith].[MutafiqAlaih] AS [MutafiqAlaih], 
+    [Ahadith].[MutafiqAlaihCounter] AS [MutafiqAlaihCounter], 
+    [Ahadith].[TashreehReference] AS [TashreehReference], 
+    [Ahadith].[ACD] AS [ACD], 
+    [Ahadith].[UrduTextColor] AS [UrduTextColor], 
+    [Ahadith].[ArabicTextColor] AS [ArabicTextColor], 
+    [Ahadith].[EnglishTextColor] AS [EnglishTextColor], 
+    [Ahadith].[BaabUrdu_DS] AS [BaabUrdu_DS], 
+    [Ahadith].[HukamAjmali_DS] AS [HukamAjmali_DS], 
+    [Ahadith].[Qisam_DS] AS [Qisam_DS], 
+    [Ahadith].[Nisbat_DS] AS [Nisbat_DS], 
+    [Ahadith].[HNo_DS] AS [HNo_DS], 
+    [Ahadith].[ArabicText_DS] AS [ArabicText_DS], 
+    [Ahadith].[UrduText_DS] AS [UrduText_DS]
+    FROM [dbo].[Ahadith] AS [Ahadith]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="AhadithLayoutDetails" EntityType="Self.AhadithLayoutDetails" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AhadithLayoutDetails].[Id] AS [Id], 
+    [AhadithLayoutDetails].[Layout] AS [Layout], 
+    [AhadithLayoutDetails].[Column] AS [Column], 
+    [AhadithLayoutDetails].[Font] AS [Font], 
+    [AhadithLayoutDetails].[FontSize] AS [FontSize], 
+    [AhadithLayoutDetails].[ForeColor] AS [ForeColor], 
+    [AhadithLayoutDetails].[BackColor] AS [BackColor], 
+    [AhadithLayoutDetails].[ReadOnly] AS [ReadOnly]
+    FROM [dbo].[AhadithLayoutDetails] AS [AhadithLayoutDetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="AhadithLayouts" EntityType="Self.AhadithLayouts" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AhadithLayouts].[Id] AS [Id], 
+    [AhadithLayouts].[Caption] AS [Caption], 
+    [AhadithLayouts].[Key] AS [Key]
+    FROM [dbo].[AhadithLayouts] AS [AhadithLayouts]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Books" EntityType="Self.Books" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Books].[Id] AS [Id], 
+    [Books].[Title] AS [Title]
+    FROM [dbo].[Books] AS [Books]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="HadithKindsACD" EntityType="Self.HadithKindsACD" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [HadithKindsACD].[Book] AS [Book], 
+    [HadithKindsACD].[ACD] AS [ACD], 
+    [HadithKindsACD].[Kind] AS [Kind], 
+    [HadithKindsACD].[Ravi] AS [Ravi]
+    FROM [dbo].[HadithKindsACD] AS [HadithKindsACD]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Intro" EntityType="Self.Intro" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Intro].[Id] AS [Id], 
+    [Intro].[Category] AS [Category], 
+    [Intro].[Caption] AS [Caption], 
+    [Intro].[Intro] AS [Intro]
+    FROM [dbo].[Intro] AS [Intro]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Kinds" EntityType="Self.Kinds" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Kinds].[Id] AS [Id], 
+    [Kinds].[Kind] AS [Kind]
+    FROM [dbo].[Kinds] AS [Kinds]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Parts" EntityType="Self.Parts" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Parts].[Id] AS [Id], 
+    [Parts].[Title] AS [Title]
+    FROM [dbo].[Parts] AS [Parts]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Ravi" EntityType="Self.Ravi" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Ravi].[ID] AS [ID], 
+    [Ravi].[Tabqa] AS [Tabqa], 
+    [Ravi].[Ravi] AS [Ravi], 
+    [Ravi].[Kuniat] AS [Kuniat], 
+    [Ravi].[Nasab] AS [Nasab], 
+    [Ravi].[Laqab] AS [Laqab]
+    FROM [dbo].[Ravi] AS [Ravi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RaviAhadithACD" EntityType="Self.RaviAhadithACD" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [RaviAhadithACD].[Ravi] AS [Ravi], 
+    [RaviAhadithACD].[RaviName] AS [RaviName], 
+    [RaviAhadithACD].[ACD] AS [ACD], 
+    [RaviAhadithACD].[Book] AS [Book]
+    FROM [dbo].[RaviAhadithACD] AS [RaviAhadithACD]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Repetition" EntityType="Self.Repetition" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Repetition].[Hadith1] AS [Hadith1], 
+    [Repetition].[Hadith2] AS [Hadith2], 
+    [Repetition].[Review] AS [Review]
+    FROM [dbo].[Repetition] AS [Repetition]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Tabqa" EntityType="Self.Tabqa" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Tabqa].[Id] AS [Id], 
+    [Tabqa].[Tabqa] AS [Tabqa]
+    FROM [dbo].[Tabqa] AS [Tabqa]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Tags" EntityType="Self.Tags" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Tags].[Id] AS [Id], 
+    [Tags].[Hadith] AS [Hadith], 
+    [Tags].[Type] AS [Type], 
+    [Tags].[Start] AS [Start], 
+    [Tags].[Length] AS [Length]
+    FROM [dbo].[Tags] AS [Tags]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TagTypes" EntityType="Self.TagTypes" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TagTypes].[Id] AS [Id], 
+    [TagTypes].[Type] AS [Type], 
+    [TagTypes].[Font] AS [Font], 
+    [TagTypes].[Color] AS [Color], 
+    [TagTypes].[Hyperlink] AS [Hyperlink]
+    FROM [dbo].[TagTypes] AS [TagTypes]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Topics" EntityType="Self.Topics" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Topics].[Id] AS [Id], 
+    [Topics].[Topic] AS [Topic]
+    FROM [dbo].[Topics] AS [Topics]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TopicsACD" EntityType="Self.TopicsACD" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TopicsACD].[Id] AS [Id], 
+    [TopicsACD].[Topic] AS [Topic], 
+    [TopicsACD].[Parent] AS [Parent], 
+    [TopicsACD].[TopicArabic] AS [TopicArabic]
+    FROM [dbo].[TopicsACD] AS [TopicsACD]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TopicsAhadithACD" EntityType="Self.TopicsAhadithACD" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TopicsAhadithACD].[ACD] AS [ACD], 
+    [TopicsAhadithACD].[Topic] AS [Topic], 
+    [TopicsAhadithACD].[Book] AS [Book], 
+    [TopicsAhadithACD].[Ravi] AS [Ravi]
+    FROM [dbo].[TopicsAhadithACD] AS [TopicsAhadithACD]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UnrepeatedAhadithAcd" EntityType="Self.UnrepeatedAhadithAcd" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UnrepeatedAhadithAcd].[Book] AS [Book], 
+    [UnrepeatedAhadithAcd].[ACD] AS [ACD], 
+    [UnrepeatedAhadithAcd].[Ravi] AS [Ravi]
+    FROM [dbo].[UnrepeatedAhadithAcd] AS [UnrepeatedAhadithAcd]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EQ_Hadith_6Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ACDR">
+          <Key>
+            <PropertyRef Name="Review" />
+          </Key>
+          <Property Name="Hadith1" Type="Int32" />
+          <Property Name="Ahadith_Book" Type="Byte" />
+          <Property Name="Ahadith_ACDNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Hadith2" Type="Int32" />
+          <Property Name="Ahadith_1_Book" Type="Byte" />
+          <Property Name="Ahadith_1_ACDNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Review" Type="Boolean" Nullable="false" />
+          <Property Name="NewHadith1" Type="Int32" />
+          <Property Name="NewHadith2" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Ahadith">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Book" />
+            <PropertyRef Name="Part" />
+            <PropertyRef Name="PartHNo" />
+            <PropertyRef Name="Topic" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ReferenceEvent" Type="Int32" />
+          <Property Name="Book" Type="Byte" Nullable="false" />
+          <Property Name="Part" Type="Byte" Nullable="false" />
+          <Property Name="PartHNo" Type="Int16" Nullable="false" />
+          <Property Name="Topic" Type="Int32" Nullable="false" />
+          <Property Name="Chapter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UrduText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EnglishText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ArabicText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ArabicWithoutAraabText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Takhreej" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ravi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ACDNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HadithRepetitionCounter" Type="Int32" />
+          <Property Name="MutafiqAlaih" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MutafiqAlaihCounter" Type="Int32" />
+          <Property Name="TashreehReference" Type="Int32" />
+          <Property Name="ACD" Type="Int32" />
+          <Property Name="UrduTextColor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ArabicTextColor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EnglishTextColor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BaabUrdu_DS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HukamAjmali_DS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Qisam_DS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Nisbat_DS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HNo_DS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ArabicText_DS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UrduText_DS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AhadithLayoutDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Layout" />
+            <PropertyRef Name="Font" />
+            <PropertyRef Name="FontSize" />
+            <PropertyRef Name="ForeColor" />
+            <PropertyRef Name="BackColor" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Layout" Type="Int32" Nullable="false" />
+          <Property Name="Column" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Font" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FontSize" Type="Int32" Nullable="false" />
+          <Property Name="ForeColor" Type="String" MaxLength="17" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BackColor" Type="String" MaxLength="17" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReadOnly" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AhadithLayout">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Caption" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Key" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Title" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HadithKindsACD">
+          <Key>
+            <PropertyRef Name="Book" />
+            <PropertyRef Name="ACD" />
+            <PropertyRef Name="Kind" />
+          </Key>
+          <Property Name="Book" Type="Byte" Nullable="false" />
+          <Property Name="ACD" Type="Int32" Nullable="false" />
+          <Property Name="Kind" Type="Byte" Nullable="false" />
+          <Property Name="Ravi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Intro">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Category" />
+            <PropertyRef Name="Caption" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Caption" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Intro1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Kind">
+          <Key>
+            <PropertyRef Name="Kind1" />
+          </Key>
+          <Property Name="Id" Type="Byte" />
+          <Property Name="Kind1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Part">
+          <Key>
+            <PropertyRef Name="Title" />
+          </Key>
+          <Property Name="Id" Type="Byte" />
+          <Property Name="Title" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ravi">
+          <Key>
+            <PropertyRef Name="Tabqa" />
+          </Key>
+          <Property Name="ID" Type="Int32" />
+          <Property Name="Tabqa" Type="Int32" Nullable="false" />
+          <Property Name="Ravi1" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Kuniat" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Nasab" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Laqab" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RaviAhadithACD">
+          <Key>
+            <PropertyRef Name="Ravi" />
+            <PropertyRef Name="ACD" />
+            <PropertyRef Name="Book" />
+          </Key>
+          <Property Name="Ravi" Type="Int32" Nullable="false" />
+          <Property Name="RaviName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ACD" Type="Int32" Nullable="false" />
+          <Property Name="Book" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Repetition">
+          <Key>
+            <PropertyRef Name="Review" />
+          </Key>
+          <Property Name="Hadith1" Type="Int32" />
+          <Property Name="Hadith2" Type="Int32" />
+          <Property Name="Review" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tabqa">
+          <Key>
+            <PropertyRef Name="Tabqa1" />
+          </Key>
+          <Property Name="Id" Type="Int32" />
+          <Property Name="Tabqa1" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Hadith" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="Start" />
+            <PropertyRef Name="Length" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Hadith" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Start" Type="Int32" Nullable="false" />
+          <Property Name="Length" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TagType">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="Hyperlink" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Font" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Hyperlink" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Topic1" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Topic1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TopicsACD">
+          <Key>
+            <PropertyRef Name="TopicArabic" />
+          </Key>
+          <Property Name="Id" Type="Int32" />
+          <Property Name="Topic" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Parent" Type="Int32" />
+          <Property Name="TopicArabic" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TopicsAhadithACD">
+          <Key>
+            <PropertyRef Name="Topic" />
+          </Key>
+          <Property Name="ACD" Type="Int32" />
+          <Property Name="Topic" Type="Int32" Nullable="false" />
+          <Property Name="Book" Type="Byte" />
+          <Property Name="Ravi" Type="String" MaxLength="34" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UnrepeatedAhadithAcd">
+          <Key>
+            <PropertyRef Name="Book" />
+            <PropertyRef Name="ACD" />
+          </Key>
+          <Property Name="Book" Type="Byte" Nullable="false" />
+          <Property Name="ACD" Type="Int32" Nullable="false" />
+          <Property Name="Ravi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="EQ_Hadith_6Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="ACDRs" EntityType="Self.ACDR" />
+          <EntitySet Name="Ahadiths" EntityType="Self.Ahadith" />
+          <EntitySet Name="AhadithLayoutDetails" EntityType="Self.AhadithLayoutDetail" />
+          <EntitySet Name="AhadithLayouts" EntityType="Self.AhadithLayout" />
+          <EntitySet Name="Books" EntityType="Self.Book" />
+          <EntitySet Name="HadithKindsACDs" EntityType="Self.HadithKindsACD" />
+          <EntitySet Name="Introes" EntityType="Self.Intro" />
+          <EntitySet Name="Kinds" EntityType="Self.Kind" />
+          <EntitySet Name="Parts" EntityType="Self.Part" />
+          <EntitySet Name="Ravis" EntityType="Self.Ravi" />
+          <EntitySet Name="RaviAhadithACDs" EntityType="Self.RaviAhadithACD" />
+          <EntitySet Name="Repetitions" EntityType="Self.Repetition" />
+          <EntitySet Name="Tabqas" EntityType="Self.Tabqa" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
+          <EntitySet Name="TagTypes" EntityType="Self.TagType" />
+          <EntitySet Name="Topics" EntityType="Self.Topic" />
+          <EntitySet Name="TopicsACDs" EntityType="Self.TopicsACD" />
+          <EntitySet Name="TopicsAhadithACDs" EntityType="Self.TopicsAhadithACD" />
+          <EntitySet Name="UnrepeatedAhadithAcds" EntityType="Self.UnrepeatedAhadithAcd" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EQ_Hadith_6ModelStoreContainer" CdmEntityContainer="EQ_Hadith_6Entities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACDRs">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.ACDR">
+              <MappingFragment StoreEntitySet="ACDR">
+                <ScalarProperty Name="Hadith1" ColumnName="Hadith1" />
+                <ScalarProperty Name="Ahadith_Book" ColumnName="Ahadith_Book" />
+                <ScalarProperty Name="Ahadith_ACDNo" ColumnName="Ahadith_ACDNo" />
+                <ScalarProperty Name="Hadith2" ColumnName="Hadith2" />
+                <ScalarProperty Name="Ahadith_1_Book" ColumnName="Ahadith_1_Book" />
+                <ScalarProperty Name="Ahadith_1_ACDNo" ColumnName="Ahadith_1_ACDNo" />
+                <ScalarProperty Name="Review" ColumnName="Review" />
+                <ScalarProperty Name="NewHadith1" ColumnName="NewHadith1" />
+                <ScalarProperty Name="NewHadith2" ColumnName="NewHadith2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ahadiths">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.Ahadith">
+              <MappingFragment StoreEntitySet="Ahadith">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReferenceEvent" ColumnName="ReferenceEvent" />
+                <ScalarProperty Name="Book" ColumnName="Book" />
+                <ScalarProperty Name="Part" ColumnName="Part" />
+                <ScalarProperty Name="PartHNo" ColumnName="PartHNo" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+                <ScalarProperty Name="Chapter" ColumnName="Chapter" />
+                <ScalarProperty Name="UrduText" ColumnName="UrduText" />
+                <ScalarProperty Name="EnglishText" ColumnName="EnglishText" />
+                <ScalarProperty Name="ArabicText" ColumnName="ArabicText" />
+                <ScalarProperty Name="ArabicWithoutAraabText" ColumnName="ArabicWithoutAraabText" />
+                <ScalarProperty Name="Takhreej" ColumnName="Takhreej" />
+                <ScalarProperty Name="Ravi" ColumnName="Ravi" />
+                <ScalarProperty Name="ACDNo" ColumnName="ACDNo" />
+                <ScalarProperty Name="HadithRepetitionCounter" ColumnName="HadithRepetitionCounter" />
+                <ScalarProperty Name="MutafiqAlaih" ColumnName="MutafiqAlaih" />
+                <ScalarProperty Name="MutafiqAlaihCounter" ColumnName="MutafiqAlaihCounter" />
+                <ScalarProperty Name="TashreehReference" ColumnName="TashreehReference" />
+                <ScalarProperty Name="ACD" ColumnName="ACD" />
+                <ScalarProperty Name="UrduTextColor" ColumnName="UrduTextColor" />
+                <ScalarProperty Name="ArabicTextColor" ColumnName="ArabicTextColor" />
+                <ScalarProperty Name="EnglishTextColor" ColumnName="EnglishTextColor" />
+                <ScalarProperty Name="BaabUrdu_DS" ColumnName="BaabUrdu_DS" />
+                <ScalarProperty Name="HukamAjmali_DS" ColumnName="HukamAjmali_DS" />
+                <ScalarProperty Name="Qisam_DS" ColumnName="Qisam_DS" />
+                <ScalarProperty Name="Nisbat_DS" ColumnName="Nisbat_DS" />
+                <ScalarProperty Name="HNo_DS" ColumnName="HNo_DS" />
+                <ScalarProperty Name="ArabicText_DS" ColumnName="ArabicText_DS" />
+                <ScalarProperty Name="UrduText_DS" ColumnName="UrduText_DS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AhadithLayoutDetails">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.AhadithLayoutDetail">
+              <MappingFragment StoreEntitySet="AhadithLayoutDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Layout" ColumnName="Layout" />
+                <ScalarProperty Name="Column" ColumnName="Column" />
+                <ScalarProperty Name="Font" ColumnName="Font" />
+                <ScalarProperty Name="FontSize" ColumnName="FontSize" />
+                <ScalarProperty Name="ForeColor" ColumnName="ForeColor" />
+                <ScalarProperty Name="BackColor" ColumnName="BackColor" />
+                <ScalarProperty Name="ReadOnly" ColumnName="ReadOnly" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AhadithLayouts">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.AhadithLayout">
+              <MappingFragment StoreEntitySet="AhadithLayouts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.Book">
+              <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HadithKindsACDs">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.HadithKindsACD">
+              <MappingFragment StoreEntitySet="HadithKindsACD">
+                <ScalarProperty Name="Book" ColumnName="Book" />
+                <ScalarProperty Name="ACD" ColumnName="ACD" />
+                <ScalarProperty Name="Kind" ColumnName="Kind" />
+                <ScalarProperty Name="Ravi" ColumnName="Ravi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Introes">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.Intro">
+              <MappingFragment StoreEntitySet="Intro">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="Intro1" ColumnName="Intro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kinds">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.Kind">
+              <MappingFragment StoreEntitySet="Kinds">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Kind1" ColumnName="Kind" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parts">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.Part">
+              <MappingFragment StoreEntitySet="Parts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ravis">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.Ravi">
+              <MappingFragment StoreEntitySet="Ravi">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Tabqa" ColumnName="Tabqa" />
+                <ScalarProperty Name="Ravi1" ColumnName="Ravi" />
+                <ScalarProperty Name="Kuniat" ColumnName="Kuniat" />
+                <ScalarProperty Name="Nasab" ColumnName="Nasab" />
+                <ScalarProperty Name="Laqab" ColumnName="Laqab" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RaviAhadithACDs">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.RaviAhadithACD">
+              <MappingFragment StoreEntitySet="RaviAhadithACD">
+                <ScalarProperty Name="Ravi" ColumnName="Ravi" />
+                <ScalarProperty Name="RaviName" ColumnName="RaviName" />
+                <ScalarProperty Name="ACD" ColumnName="ACD" />
+                <ScalarProperty Name="Book" ColumnName="Book" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Repetitions">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.Repetition">
+              <MappingFragment StoreEntitySet="Repetition">
+                <ScalarProperty Name="Hadith1" ColumnName="Hadith1" />
+                <ScalarProperty Name="Hadith2" ColumnName="Hadith2" />
+                <ScalarProperty Name="Review" ColumnName="Review" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tabqas">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.Tabqa">
+              <MappingFragment StoreEntitySet="Tabqa">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tabqa1" ColumnName="Tabqa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.Tag">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Hadith" ColumnName="Hadith" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TagTypes">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.TagType">
+              <MappingFragment StoreEntitySet="TagTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Font" ColumnName="Font" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Hyperlink" ColumnName="Hyperlink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topics">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.Topic">
+              <MappingFragment StoreEntitySet="Topics">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Topic1" ColumnName="Topic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopicsACDs">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.TopicsACD">
+              <MappingFragment StoreEntitySet="TopicsACD">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+                <ScalarProperty Name="TopicArabic" ColumnName="TopicArabic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopicsAhadithACDs">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.TopicsAhadithACD">
+              <MappingFragment StoreEntitySet="TopicsAhadithACD">
+                <ScalarProperty Name="ACD" ColumnName="ACD" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+                <ScalarProperty Name="Book" ColumnName="Book" />
+                <ScalarProperty Name="Ravi" ColumnName="Ravi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnrepeatedAhadithAcds">
+            <EntityTypeMapping TypeName="EQ_Hadith_6Model.UnrepeatedAhadithAcd">
+              <MappingFragment StoreEntitySet="UnrepeatedAhadithAcd">
+                <ScalarProperty Name="Book" ColumnName="Book" />
+                <ScalarProperty Name="ACD" ColumnName="ACD" />
+                <ScalarProperty Name="Ravi" ColumnName="Ravi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
