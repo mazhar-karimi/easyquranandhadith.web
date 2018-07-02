@@ -8,14 +8,18 @@ namespace eqwh.web.Factory
 {
     public class DataReaderFactory
     {
-        public static IDataReader Get
+        public static IDataReader Get(bool hadith=false)
         {
-            get
+            if (hadith)
+            {
+                return new DbReader();
+            }
+            else
             {
                 return new LuceneReader();
             }
         }
     }
 }
-//661460/68 muhammad anas ayub
+
 

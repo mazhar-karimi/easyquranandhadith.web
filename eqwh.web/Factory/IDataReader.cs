@@ -13,5 +13,7 @@ namespace eqwh.web.Factory
         string GetAyat(int ayahno, string colname);
 
         int[] SearchAyat(string word);
+
+        Ahadith GetHadith(int hadithno);
     }
 }
